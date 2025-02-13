@@ -1,121 +1,217 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EduSync-Admin</title>
-    <link rel="stylesheet" href="../style/main.css">
-    <link rel="stylesheet" href="../style/style.css">
-    <link rel="stylesheet" href="./style/dashboard.css">
-    <link rel="stylesheet" href="./style/batches.css">
-    <script src="https://kit.fontawesome.com/e82ac91667.js" crossorigin="anonymous"></script>
-</head>
-<body>
+    <link rel="stylesheet" href="../style/main.css" />
+    <link rel="stylesheet" href="../style/style.css" />
+    <link rel="stylesheet" href="./style/dashboard.css" />
+    <link rel="stylesheet" href="./style/batches.css" />
+    <link rel="stylesheet" href="./style/student.css" />
+    <link rel="stylesheet" href="./style/calander.css" />
+    <script
+      src="https://kit.fontawesome.com/e82ac91667.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
     <div class="main-container">
-        <nav>
-            <h1>EduSync</h1>
-            <ul>
-                <li class="nav-item active"><i class="fa-solid fa-screwdriver-wrench"></i><p>Dashboard</p></li>
-                <li class="nav-item"><i class="fa-solid fa-screwdriver-wrench"></i><p>Class Shedule</p></li>
-                <li class="nav-item"><i class="fa-solid fa-screwdriver-wrench"></i><p>Batches</p></li>
-                <li class="nav-item"><i class="fa-solid fa-screwdriver-wrench"></i><p>Cources</p></li>
-                <li class="nav-item"><i class="fa-solid fa-screwdriver-wrench"></i><p>Modules</p></li>
-                <li class="nav-item"><i class="fa-solid fa-screwdriver-wrench"></i><p>Students</p></li>
-                <li class="nav-item"><i class="fa-solid fa-screwdriver-wrench"></i><p>Assignments</p></li>
-                <li class="nav-item"><i class="fa-solid fa-screwdriver-wrench"></i><p>Notice</p></li>
-            </ul>
-            <div class="logout-btn">Log out</div>
-        </nav>
-        <div class="container-holder">
-            <div class="container dashboard">
-                <!-- dashboard content should add this -->
-                <h1>Recently Added</h1>
-                <div class="horiscroll-container-1">
-
-                </div>
-                <h2>Day to Day Orverview</h2>
-                <div class="flex-col">
-                    <div class="chart-container">
-
-                    </div>
-                    <div class="other-container">
-                        <div class="hor-container1">
-                            <div class="stattus-card"></div>
-                            <div class="stattus-card"></div>
-                            <div class="stattus-card"></div>
-                        </div>
-                        <div class="status-lcard"></div>
-                        <div class="status-lcard"></div>
-                    </div>
-                </div>
+      <nav>
+        <h1>EduSync</h1>
+        <ul>
+          <li class="nav-item active">
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+            <p>Dashboard</p>
+          </li>
+          <li class="nav-item">
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+            <p>Class Shedule</p>
+          </li>
+          <li class="nav-item">
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+            <p>Batches</p>
+          </li>
+          <li class="nav-item">
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+            <p>Cources</p>
+          </li>
+          <li class="nav-item">
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+            <p>Modules</p>
+          </li>
+          <li class="nav-item">
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+            <p>Students</p>
+          </li>
+          <li class="nav-item">
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+            <p>Assignments</p>
+          </li>
+          <li class="nav-item">
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+            <p>Notice</p>
+          </li>
+        </ul>
+        <div class="logout-btn">Log out</div>
+      </nav>
+      <div class="container-holder">
+        <div class="container dashboard">
+          <!-- dashboard content should add this -->
+          <h1>Recently Added</h1>
+          <div class="horiscroll-container-1"></div>
+          <h2>Day to Day Orverview</h2>
+          <div class="flex-col">
+            <div class="chart-container"></div>
+            <div class="other-container">
+              <div class="hor-container1">
+                <div class="stattus-card"></div>
+                <div class="stattus-card"></div>
+                <div class="stattus-card"></div>
+              </div>
+              <div class="status-lcard"></div>
+              <div class="status-lcard"></div>
             </div>
-            <div class="container">
-                <!-- class shedule content -->
-                <h1>Dashboard1</h1>
-            </div>
-            <div class="container active-contetnt ">
-                <!-- batches content -->
-                <h1>Batches</h1>
-                <div class="scroller-frame">
-                    <div class="batches-container">
-                        <div class="batch-card"></div>
-                        <div class="batch-card"></div>
-                        <div class="batch-card"></div>
-                        <div class="batch-card"></div>
-                        <div class="batch-card"></div>
-                        <div class="batch-card"></div>
-                        <div class="batch-card"></div>
-                        <div class="batch-card"></div>
-                        <div class="batch-card"></div>
-                        <div class="batch-card"></div>
-                        <div class="batch-card"></div>
-                        <div class="batch-card"></div>
-                        <div class="batch-card"></div>
-                        
-                    </div>
-                </div>
-            </div>
-            <div class="container ">
-                <!-- cource content -->
-                <h1>Cources</h1>
-                <div class="scroller-frame">
-                    <div class="batches-container">
-                        <div class="batch-card"></div>
-                        <div class="batch-card"></div>
-                        <div class="batch-card"></div>
-                        <div class="batch-card"></div>
-                        <div class="batch-card"></div>
-                        <div class="batch-card"></div>
-                        <div class="batch-card"></div>
-                        <div class="batch-card"></div>
-                        <div class="batch-card"></div>
-                        <div class="batch-card"></div>
-                        <div class="batch-card"></div>
-                        <div class="batch-card"></div>
-                        <div class="batch-card"></div>
-                        
-                    </div>
-                </div>
-            </div>
-            <div class="container ">
-                <!-- modules content -->
-                <h1>Dashboard4</h1>
-            </div>
-            <div class="container ">
-                <!-- student content -->
-                <h1>Dashboard5</h1>
-            </div>
-            <div class="container ">
-                <!-- assigment content -->
-                <h1>Dashboard6</h1>
-            </div>
-            <div class="container ">
-                <!-- notice content -->
-                <h1>Dashboard7</h1>
-            </div>
+          </div>
         </div>
+        <div class="container">
+          <!-- class shedule content -->
+          <h1>Calander</h1>
+          <div class="grid">
+            <div class="shedule-calender">
+              <div class="card calendar">
+                <div class="calendar-header">
+                  <h2>Calendar</h2>
+                  <div class="calendar-nav">
+                    <button id="prevMonth">
+                      <i data-feather="chevron-left"></i>
+                    </button>
+                    <span id="currentMonth" style="margin: 0 16px"></span>
+                    <button id="nextMonth">
+                      <i data-feather="chevron-right"></i>
+                    </button>
+                  </div>
+                </div>
+                <div id="calendarGrid" class="calendar-grid"></div>
+                <button class="done-btn">Done</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <!-- batches content -->
+          <h1>Batches</h1>
+          <div class="scroller-frame">
+            <div class="batches-container">
+              <div class="batch-card"></div>
+              <div class="batch-card"></div>
+              <div class="batch-card"></div>
+              <div class="batch-card"></div>
+              <div class="batch-card"></div>
+              <div class="batch-card"></div>
+              <div class="batch-card"></div>
+              <div class="batch-card"></div>
+              <div class="batch-card"></div>
+              <div class="batch-card"></div>
+              <div class="batch-card"></div>
+              <div class="batch-card"></div>
+              <div class="batch-card"></div>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <!-- cource content -->
+          <h1>Cources</h1>
+          <div class="scroller-frame">
+            <div class="batches-container">
+              <div class="batch-card"></div>
+              <div class="batch-card"></div>
+              <div class="batch-card"></div>
+              <div class="batch-card"></div>
+              <div class="batch-card"></div>
+              <div class="batch-card"></div>
+              <div class="batch-card"></div>
+              <div class="batch-card"></div>
+              <div class="batch-card"></div>
+              <div class="batch-card"></div>
+              <div class="batch-card"></div>
+              <div class="batch-card"></div>
+              <div class="batch-card"></div>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <!-- modules content -->
+          <h1>Dashboard4</h1>
+        </div>
+        <div class="container active-contetnt">
+          <!-- student content -->
+          <h1>Student</h1>
+          <div class="student-serch-area">
+            <select name="" id="" class="selector-dec">
+              <option value="">Select Batch</option>
+              <option value="">Select Batch</option>
+              <option value="">Select Batch</option>
+              <option value="">Select Batch</option>
+              <option value="">Select Batch</option>
+            </select>
+            <select name="" id="" class="selector-dec">
+              <option value="">Select Batch</option>
+              <option value="">Select Batch</option>
+              <option value="">Select Batch</option>
+              <option value="">Select Batch</option>
+              <option value="">Select Batch</option>
+            </select>
+            <select name="" id="" class="selector-dec">
+              <option value="">Select Batch</option>
+              <option value="">Select Batch</option>
+              <option value="">Select Batch</option>
+              <option value="">Select Batch</option>
+              <option value="">Select Batch</option>
+            </select>
+            <select name="" id="" class="selector-dec">
+              <option value="">Select Batch</option>
+              <option value="">Select Batch</option>
+              <option value="">Select Batch</option>
+              <option value="">Select Batch</option>
+              <option value="">Select Batch</option>
+            </select>
+            <input type="text" class="input-search" />
+          </div>
+          <div class="scroller-frame-student">
+            <div class="result-holder">
+              <div class="student-card-long">
+                <div class="stu-img-s"></div>
+                <div class="stu-details">
+                  <h3>Hanska Ravishan /id 24 / nic 200209801097</h3>
+                  <p>HD Software Engineering</p>
+                </div>
+                <h4 class="view-more-btn">View more</h4>
+              </div>
+              <div class="student-card-long"></div>
+              <div class="student-card-long"></div>
+              <div class="student-card-long"></div>
+              <div class="student-card-long"></div>
+              <div class="student-card-long"></div>
+              <div class="student-card-long"></div>
+              <div class="student-card-long"></div>
+              <div class="student-card-long"></div>
+              <div class="student-card-long"></div>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <!-- assigment content -->
+          <h1>Dashboard6</h1>
+        </div>
+        <div class="container">
+          <!-- notice content -->
+          <h1>Dashboard7</h1>
+        </div>
+      </div>
     </div>
-
+    <script src="https://unpkg.com/feather-icons"></script>
     <script src="./js/navigation.js"></script>
-</body>
+    <script src="./js/calander.js"></script>
+  </body>
 </html>

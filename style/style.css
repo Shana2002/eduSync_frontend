@@ -54,3 +54,16 @@
     background-color: var(--secondary-color);
   }
   
+  .flex-col-evl{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+  .flex-col-btw{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
