@@ -1,8 +1,7 @@
 .scroller-frame {
     height: 85vh; /* Ensures it takes most of the viewport height */
     overflow-y: auto; /* Enables vertical scrolling */
-    overflow-x: hidden; /* Hides horizontal scroll if unnecessary */
-    /* padding-right: 10px; Optional: prevents scrollbar from overlapping content */
+    overflow-x: hidden; 
 }
 
 .batches-container {

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="./style/batches.css" />
     <link rel="stylesheet" href="./style/student.css" />
     <link rel="stylesheet" href="./style/calander.css" />
+    <link rel="stylesheet" href="./style/form.css" />
     <script
       src="https://kit.fontawesome.com/e82ac91667.js"
       crossorigin="anonymous"
@@ -76,7 +77,6 @@
         </div>
         <div class="container">
           <!-- class shedule content -->
-          <h1>Calander</h1>
           <div class="grid">
             <div class="shedule-calender">
               <div class="card calendar">
@@ -94,6 +94,32 @@
                 </div>
                 <div id="calendarGrid" class="calendar-grid"></div>
                 <button class="done-btn">Done</button>
+              </div>
+            </div>
+            <div class="shedule-sub-container">
+              <div class="shedule-add-btn">
+                <Button id="add-shedule">Add Shedule</Button>
+              </div>
+              <div>
+                <div class="shedule-spec-container">
+                  <div class="shedule-spec-scroller">
+                    <div class="shedule-details-card">
+                      <h4>Batch 121 DSA Session 10</h4>
+                      <h3>10:00 a.m to 12pm</h3>
+                      <h3>Hall E31</h3>
+                    </div>
+                    <div class="shedule-details-card">
+                      <h4>Batch 121 DSA Session 10</h4>
+                      <h3>10:00 a.m to 12pm</h3>
+                      <h3>Hall E31</h3>
+                    </div>
+                    <div class="shedule-details-card">
+                      <h4>Batch 121 DSA Session 10</h4>
+                      <h3>10:00 a.m to 12pm</h3>
+                      <h3>Hall E31</h3>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -209,7 +235,47 @@
           <h1>Dashboard7</h1>
         </div>
       </div>
+      <div class="add-form" id="form-panel">
+        <div class="close-container">
+          <i class="fa-solid fa-xmark" id="close-btn-form"></i>
+        </div>
+        <div class="form-content-container">
+          <form action="" class="shedule-form middle-form">
+            <h1>Shedule a Class</h1>
+            <p>Set a new Session on your way</p>
+            <hr>
+            <h4>Basic Details</h4>
+            <input type="text" placeholder="Session name">
+                <textarea placeholder="Session description"></textarea>
+                <select>
+                    <option selected disabled>Lecture hall</option>
+                </select>
+                <select>
+                    <option selected disabled>Batch number</option>
+                </select>
+                <input type="text" placeholder="Lecture's name">
+
+                <div class="date-time">
+                    <label>
+                        <span>📅 Date</span>
+                        <input type="date">
+                    </label>
+                    <label>
+                        <span>⏰ Start Time</span>
+                        <input type="time">
+                    </label>
+                    <label>
+                        <span>⏰ End Time</span>
+                        <input type="time">
+                    </label>
+                </div>
+          </form>
+        </div>
+      </div>
     </div>
+    
+
+    
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="./js/navigation.js"></script>
     <script src="./js/calander.js"></script>

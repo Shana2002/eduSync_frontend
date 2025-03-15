@@ -1,8 +1,6 @@
 .shedule-calender{
     width: 80%;
-    height: 60vh;
-    background-color: red;
-
+    height: 90vh
 }
 .card {
     background-color: #fff;
@@ -11,9 +9,9 @@
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 .grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 24px;
+    height: 90vh;
+    display: flex;
+    gap: 10px;
 }
 
 .calendar {
@@ -51,7 +49,7 @@
 }
 
 .calendar-day {
-    aspect-ratio: 1;
+    aspect-ratio: 1.5;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -83,4 +81,45 @@
     border-radius: 8px;
     cursor: pointer;
     margin-top: 16px;
+}
+.shedule-sub-container{
+    width: 20vw;
+    border-radius: 14px;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+}
+.shedule-add-btn Button{
+    width: 100%;
+    height: 5vh;
+}
+
+.shedule-spec-container{
+    background-color: white;
+    height: 86vh;
+    border-radius: 14px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+}
+.shedule-spec-scroller{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    margin: 10px 0px;
+}
+.shedule-details-card{
+    width: 90%;
+    color: #64748B;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    
+}
+.shedule-details-card h4{
+    
+    margin: 0;
 }

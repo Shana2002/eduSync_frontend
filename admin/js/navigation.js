@@ -1,5 +1,6 @@
 const navbtns = document.querySelectorAll('.nav-item');
 const content = document.querySelectorAll('.container');
+const formPanel = document.getElementById('form-panel');
 
 navbtns.forEach((button,index)=>{
     button.addEventListener("click",()=>{
@@ -8,4 +9,14 @@ navbtns.forEach((button,index)=>{
         content.forEach((content)=>content.classList.remove('active-contetnt'));
         content[index].classList.add('active-contetnt');
     })
+})
+
+document.getElementById('add-shedule').addEventListener("click",(e)=>{
+    e.preventDefault();
+    formPanel.classList.add('show-panel');
+})
+
+document.getElementById('close-btn-form').addEventListener("click",(e)=>{
+    e.preventDefault();
+    formPanel.classList.remove('show-panel');
 })
