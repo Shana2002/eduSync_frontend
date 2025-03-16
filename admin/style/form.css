@@ -40,6 +40,7 @@
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     padding: 3vh 2vw;
     border-radius: 14px;
+    display: none;
 }
 .middle-form hr{
     color: black;
@@ -120,4 +121,12 @@ textarea {
 
 .cancel:hover {
     background: #e0e0e0;
+}
+
+.show-form{
+    display: block;
+}
+
+.remov-form{
+    display: none;
 }

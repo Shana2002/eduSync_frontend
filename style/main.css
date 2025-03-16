@@ -74,3 +74,8 @@ nav ul li:hover{
 .active-contetnt{
     display: block;
 }
+.container-with-button{
+    display: flex;
+    justify-content: space-between;
+    margin: 1vh 0;
+}

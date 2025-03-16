@@ -96,7 +96,7 @@
             </div>
             <div class="shedule-sub-container">
               <div class="shedule-add-btn">
-                <Button id="add-shedule">Add Shedule</Button>
+                <Button  class="form-btn">Add Shedule</Button>
               </div>
               <div>
                 <div class="shedule-spec-container">
@@ -124,7 +124,10 @@
         </div>
         <div class="container">
           <!-- batches content -->
-          <h1>Batches</h1>
+          <div class="container-with-button">
+            <h1>Batches</h1>
+            <Button class="form-btn">Add Batch</Button>
+          </div>
           <div class="scroller-frame">
             <div class="batches-container" id="batch-container">
             </div>
@@ -132,7 +135,10 @@
         </div>
         <div class="container">
           <!-- cource content -->
-          <h1>Programs</h1>
+          <div class="container-with-button">
+            <h1>Program</h1>
+            <Button class="form-btn">Add Program</Button>
+          </div>
           <div class="scroller-frame">
             <div class="batches-container" id="program-container">
             </div>
@@ -140,7 +146,10 @@
         </div>
         <div class="container">
           <!-- modules content -->
-          <h1>Modules</h1>
+          <div class="container-with-button">
+            <h1>Module</h1>
+            <Button class="form-btn">Add Module</Button>
+          </div>
           <div class="scroller-frame-student">
             <div class="result-holder-module">
               <div class="module-card">
@@ -169,7 +178,10 @@
         </div>
         <div class="container active-contetnt">
           <!-- student content -->
-          <h1>Student</h1>
+          <div class="container-with-button">
+            <h1>Student</h1>
+            <Button class="form-btn">Add Student</Button>
+          </div>
           <div class="student-serch-area">
             <select name="" id="" class="selector-dec">
               <option value="">Select Batch</option>
@@ -234,7 +246,7 @@
         </div>
         <div class="form-content-container">
           <!-- Shedule class form -->
-          <form action="" class="shedule-form middle-form" style="display: none;">
+          <form  class="add-form1 shedule-form middle-form">
             <h1>Shedule a Class</h1>
             <p>Set a new Session on your way</p>
             <hr>
@@ -266,7 +278,7 @@
             <input type="submit" value="Add Shedule">
           </form>
           <!-- Add batch form -->
-          <form class="shedule-form middle-form" style="display: none;">
+          <form class="add-form1 shedule-form middle-form">
             <h1>Add Batch</h1>
             <p>Add a new batch</p>
             <hr>
@@ -281,7 +293,7 @@
             <input type="submit" value="Add Batch">
           </form>
           <!-- Add Program form -->
-          <form class="shedule-form middle-form" style="display: none;" >
+          <form class="add-form1 shedule-form middle-form">
             <h1>Add Program</h1>
             <p>Add a new Program</p>
             <hr>
@@ -293,7 +305,7 @@
             <input type="submit" value="Add Program">
           </form>
           <!-- Add Module -->
-          <form class="shedule-form middle-form" style="display: none;">
+          <form class="add-form1  shedule-form middle-form">
             <h1>Add Module</h1>
             <p>Add a new Module</p>
             <hr>
@@ -305,7 +317,7 @@
             <input type="submit" value="Save Module">
           </form>
           <!-- Add Student -->
-          <form class="shedule-form middle-form" style="display: none;" >
+          <form class="add-form1 shedule-form middle-form">
             <h1>Add Student</h1>
             <p>Add a new student to your Batch</p>
             <hr>
@@ -317,7 +329,7 @@
             <input type="submit" value="Save Module">
           </form>
           <!-- Add Assigment -->
-          <form class="shedule-form middle-form"  >
+          <form class="shedule-form middle-form">
             <h1>Add Student</h1>
             <p>Update your existing assignments </p>
             <hr>

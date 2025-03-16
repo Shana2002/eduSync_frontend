@@ -1,6 +1,8 @@
 const navbtns = document.querySelectorAll('.nav-item');
 const content = document.querySelectorAll('.container');
 const formPanel = document.getElementById('form-panel');
+const formList = document.querySelectorAll('.add-form1');
+const formBtn = document.querySelectorAll('.form-btn');
 
 navbtns.forEach((button,index)=>{
     button.addEventListener("click",()=>{
@@ -10,10 +12,16 @@ navbtns.forEach((button,index)=>{
         content[index].classList.add('active-contetnt');
     })
 })
-
-document.getElementById('add-shedule').addEventListener("click",(e)=>{
-    e.preventDefault();
-    formPanel.classList.add('show-panel');
+console.log(formBtn);
+console.log(formList);
+// form chnaging
+formBtn.forEach((button,index)=>{
+    button.addEventListener("click",(e)=>{
+        e.preventDefault();
+        formPanel.classList.add('show-panel');
+        formList.forEach((content)=>content.classList.remove('show-form'))
+        formList[index].classList.add('show-form');
+    })
 })
 
 document.getElementById('close-btn-form').addEventListener("click",(e)=>{
