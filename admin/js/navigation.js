@@ -20,3 +20,8 @@ document.getElementById('close-btn-form').addEventListener("click",(e)=>{
     e.preventDefault();
     formPanel.classList.remove('show-panel');
 })
+
+document.getElementById('close-btn-panel').addEventListener("click",(e)=>{
+    e.preventDefault();
+    document.getElementById('batch-details-panel').classList.remove('toglle-batch');
+})

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="./style/student.css" />
     <link rel="stylesheet" href="./style/calander.css" />
     <link rel="stylesheet" href="./style/form.css" />
+    <link rel="stylesheet" href="./style/module.css" />
     <script
       src="https://kit.fontawesome.com/e82ac91667.js"
       crossorigin="anonymous"
@@ -35,7 +36,7 @@
           </li>
           <li class="nav-item">
             <i class="fa-solid fa-screwdriver-wrench"></i>
-            <p>Cources</p>
+            <p>Programs</p>
           </li>
           <li class="nav-item">
             <i class="fa-solid fa-screwdriver-wrench"></i>
@@ -128,47 +129,46 @@
           <!-- batches content -->
           <h1>Batches</h1>
           <div class="scroller-frame">
-            <div class="batches-container">
-              <div class="batch-card"></div>
-              <div class="batch-card"></div>
-              <div class="batch-card"></div>
-              <div class="batch-card"></div>
-              <div class="batch-card"></div>
-              <div class="batch-card"></div>
-              <div class="batch-card"></div>
-              <div class="batch-card"></div>
-              <div class="batch-card"></div>
-              <div class="batch-card"></div>
-              <div class="batch-card"></div>
-              <div class="batch-card"></div>
-              <div class="batch-card"></div>
+            <div class="batches-container" id="batch-container">
             </div>
           </div>
         </div>
         <div class="container">
           <!-- cource content -->
-          <h1>Cources</h1>
+          <h1>Programs</h1>
           <div class="scroller-frame">
-            <div class="batches-container">
-              <div class="batch-card"></div>
-              <div class="batch-card"></div>
-              <div class="batch-card"></div>
-              <div class="batch-card"></div>
-              <div class="batch-card"></div>
-              <div class="batch-card"></div>
-              <div class="batch-card"></div>
-              <div class="batch-card"></div>
-              <div class="batch-card"></div>
-              <div class="batch-card"></div>
-              <div class="batch-card"></div>
-              <div class="batch-card"></div>
-              <div class="batch-card"></div>
+            <div class="batches-container" id="program-container">
             </div>
           </div>
         </div>
         <div class="container">
           <!-- modules content -->
-          <h1>Dashboard4</h1>
+          <h1>Modules</h1>
+          <div class="scroller-frame-student">
+            <div class="result-holder-module">
+              <div class="module-card">
+                <div>Introduction of Porgramming</div>
+                <div>8 sessions</div>
+                <div>3-4 weeks</div>
+                <div>2 assigments</div>
+                <div></div>
+              </div>
+              <div class="module-card">
+                <div>Introduction of Porgramming</div>
+                <div>8 sessions</div>
+                <div>3-4 weeks</div>
+                <div>2 assigments</div>
+                <div></div>
+              </div>
+              <div class="module-card">
+                <div>Introduction of Porgramming</div>
+                <div>8 sessions</div>
+                <div>3-4 weeks</div>
+                <div>2 assigments</div>
+                <div></div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="container active-contetnt">
           <!-- student content -->
@@ -228,11 +228,11 @@
         </div>
         <div class="container">
           <!-- assigment content -->
-          <h1>Dashboard6</h1>
+          <h1>Assigment</h1>
         </div>
         <div class="container">
           <!-- notice content -->
-          <h1>Dashboard7</h1>
+          <h1>Notice</h1>
         </div>
       </div>
       <div class="add-form" id="form-panel">
@@ -240,37 +240,139 @@
           <i class="fa-solid fa-xmark" id="close-btn-form"></i>
         </div>
         <div class="form-content-container">
-          <form action="" class="shedule-form middle-form">
+          <!-- Shedule class form -->
+          <form action="" class="shedule-form middle-form" style="display: none;">
             <h1>Shedule a Class</h1>
             <p>Set a new Session on your way</p>
             <hr>
             <h4>Basic Details</h4>
             <input type="text" placeholder="Session name">
-                <textarea placeholder="Session description"></textarea>
-                <select>
-                    <option selected disabled>Lecture hall</option>
-                </select>
-                <select>
-                    <option selected disabled>Batch number</option>
-                </select>
-                <input type="text" placeholder="Lecture's name">
+            <textarea placeholder="Session description"></textarea>
+            <select>
+                <option selected disabled>Lecture hall</option>
+            </select>
+            <select>
+                <option selected disabled>Batch number</option>
+            </select>
+            <input type="text" placeholder="Lecture's name">
 
-                <div class="date-time">
-                    <label>
-                        <span>📅 Date</span>
-                        <input type="date">
-                    </label>
-                    <label>
-                        <span>⏰ Start Time</span>
-                        <input type="time">
-                    </label>
-                    <label>
-                        <span>⏰ End Time</span>
-                        <input type="time">
-                    </label>
-                </div>
+            <div class="date-time">
+                <label>
+                    <span>📅 Date</span>
+                    <input type="date">
+                </label>
+                <label>
+                    <span>⏰ Start Time</span>
+                    <input type="time">
+                </label>
+                <label>
+                    <span>⏰ End Time</span>
+                    <input type="time">
+                </label>
+            </div>
+            <input type="submit" value="Add Shedule">
+          </form>
+          <!-- Add batch form -->
+          <form class="shedule-form middle-form" style="display: none;">
+            <h1>Add Batch</h1>
+            <p>Add a new batch</p>
+            <hr>
+            <h4>Batch Details</h4>
+            <select>
+              <option selected disabled>Select Program</option>
+            </select>
+            <label>
+              <span>📅 Start Date</span>
+              <input type="date">
+            </label>
+            <input type="submit" value="Add Batch">
+          </form>
+          <!-- Add Program form -->
+          <form class="shedule-form middle-form" style="display: none;" >
+            <h1>Add Program</h1>
+            <p>Add a new Program</p>
+            <hr>
+            <h4>Program Details</h4>
+            <input type="text" placeholder="title">
+            <textarea placeholder="Description"></textarea>
+            <input type="text" placeholder="Code">
+            <input type="text" placeholder="Duration">
+            <input type="submit" value="Add Program">
+          </form>
+          <!-- Add Module -->
+          <form class="shedule-form middle-form" style="display: none;">
+            <h1>Add Module</h1>
+            <p>Add a new Module</p>
+            <hr>
+            <h4>Module Details</h4>
+            <input type="text" placeholder="Code">
+            <input type="text" placeholder="title">
+            <textarea placeholder="Description"></textarea>
+            <input type="text" placeholder="Duration">
+            <input type="submit" value="Save Module">
+          </form>
+          <!-- Add Student -->
+          <form class="shedule-form middle-form" style="display: none;" >
+            <h1>Add Student</h1>
+            <p>Add a new student to your Batch</p>
+            <hr>
+            <h4>Student Details</h4>
+            <input type="text" placeholder="Name">
+
+            <textarea placeholder="Description"></textarea>
+            <input type="text" placeholder="Duration">
+            <input type="submit" value="Save Module">
+          </form>
+          <!-- Add Assigment -->
+          <form class="shedule-form middle-form"  >
+            <h1>Add Student</h1>
+            <p>Update your existing assignments </p>
+            <hr>
+            <h4>Assigment Details</h4>
+            <input type="text" placeholder="Name">
+            <textarea placeholder="Description"></textarea>
+            <input type="text" placeholder="Duration">
+            <input type="submit" value="Save Module">
           </form>
         </div>
+      </div>
+      <div class="batch-details-panel" id="batch-details-panel">
+        <div class="top-container-batch">
+          <h1>Batch 116</h1>
+          <i class="fa-solid fa-xmark" id="close-btn-panel"></i>
+        </div>
+        <div class="batch-details-contianer">
+          <div>Program </div>
+          <div>Bsc(hons) Software Engineering</div>
+          <div>Total Student</div>
+          <div>150</div>
+          <div>Start Date</div>
+          <div>2025/01/01</div>
+          <div>End Date</div>
+          <div>2027/01/01</div>
+        </div>
+        <h3 style="color: white; margin-left: 2vw;">Student Details</h3>
+        <div class="batch-student-scroller">
+          <div class="batch-student-container">
+            <div class="batch-stu-card">
+              <div class="stu-img-s"></div>
+              <div class="stu-details">
+                <h3>Hanska Ravishan /id 24 / nic 200209801097</h3>
+                <p>HD Software Engineering</p>
+              </div>
+              <h4 class="view-more-btn">View more</h4>
+            </div>
+            <div class="batch-stu-card">
+              <div class="stu-img-s"></div>
+              <div class="stu-details">
+                <h3>Hanska Ravishan /id 24 / nic 200209801097</h3>
+                <p>HD Software Engineering</p>
+              </div>
+              <h4 class="view-more-btn">View more</h4>
+            </div>
+          </div>
+        </div>
+        
       </div>
     </div>
     
@@ -279,5 +381,7 @@
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="./js/navigation.js"></script>
     <script src="./js/calander.js"></script>
+    <script src="./js/batch.js"></script>
+    <script src="./js/program.js"></script>
   </body>
 </html>
