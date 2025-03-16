@@ -45,7 +45,8 @@ async function loadBatches() {
 loadBatches();
 
 function showBatchDetailsPanel(batch_id){
-    alert(`Batch ID: ${batch_id}`);
+    //alert(`Batch ID: ${batch_id}`);
+    loadBatchDetails(batch_id);
     batchDetailsPanel.classList.add('toglle-batch');
 }
 document.addEventListener('DOMContentLoaded', async () => {
@@ -111,3 +112,8 @@ document.getElementById('add-batch-form').addEventListener('submit', async (e) =
         alert('Error creating batch. Please try again.');
     }
 });
+
+function loadBatchDetails(batch_id){
+    document.getElementById('batch-panel-id').innerHTML = `Batch ${batch_id}`;
+    
+}
