@@ -1,0 +1,92 @@
+.assigment-panel{
+    position: fixed;
+    width: 80vw;
+    background-color: white;
+    height: 100vw;
+    right: -80vw;
+    transition: right 0.2s ease-in-out;
+    color: white;
+}
+.toggle-assigment{
+    right: 0;
+}
+.top-assigment-container{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    gap: 8px;
+    color: black;
+    margin: 10px 20px;
+}
+.top-assigment-container div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.fa-backward-step{
+    font-size: 2.5rem;
+    color: var(--primary-color)
+}
+.top-assigment-container div:nth-child(2){
+    grid-column: span 3 / span 3;
+    color: black;
+}
+.top-assigment-container div:nth-child(3){
+    grid-column-start: 5;
+}
+.assigment-table-container{
+    width: 70vw;
+    margin: 5vh 5vw;
+    height: 80vh;
+    overflow-y: auto;
+    color: black;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+}
+
+th {
+    background: #f0f0f0;
+    font-weight: bold;
+}
+
+td {
+    background: #fff;
+}
+
+.upload-btn {
+    background: #b0eac8;
+    color: #2d7a4b;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.upload-btn:hover {
+    background: #9bdab8;
+}
+
+.manage-btn {
+    background: #007bff;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.manage-btn:hover {
+    background: #0056b3;
+}
+

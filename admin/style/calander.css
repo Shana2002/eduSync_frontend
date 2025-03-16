@@ -62,7 +62,7 @@
 }
 
 .calendar-day.selected {
-    background-color: #00A389;
+    background-color: #435D82;
     color: #fff;
 }
 
@@ -74,7 +74,7 @@
 }
 
 .done-btn {
-    background-color: #00A389;
+    background-color: #435D82;
     color: #fff;
     border: none;
     padding: 8px 16px;
