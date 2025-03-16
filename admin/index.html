@@ -151,7 +151,7 @@
             <Button class="form-btn">Add Module</Button>
           </div>
           <div class="scroller-frame-student">
-            <div class="result-holder-module">
+            <div class="result-holder-module" id="module-result-panel">
               <div class="module-card">
                 <div>Introduction of Porgramming</div>
                 <div>8 sessions</div>
@@ -278,20 +278,25 @@
             <input type="submit" value="Add Shedule">
           </form>
           <!-- Add batch form -->
-          <form class="add-form1 shedule-form middle-form">
-            <h1>Add Batch</h1>
-            <p>Add a new batch</p>
-            <hr>
-            <h4>Batch Details</h4>
-            <select>
-              <option selected disabled>Select Program</option>
-            </select>
-            <label>
-              <span>📅 Start Date</span>
-              <input type="date">
-            </label>
-            <input type="submit" value="Add Batch">
+          <form class="add-form1 shedule-form middle-form" id="add-batch-form">
+              <h1>Add Batch</h1>
+              <p>Add a new batch</p>
+              <hr>
+              <h4>Batch Details</h4>
+              
+              <!-- Dropdown for selecting program -->
+              <select id="batch-program">
+                  <option selected disabled>Select Program</option>
+              </select>
+          
+              <label>
+                  <span>📅 Start Date</span>
+                  <input type="date" id="batch-start-date">
+              </label>
+          
+              <input type="submit" value="Add Batch">
           </form>
+        
           <!-- Add Program form -->
           <form class="add-form1 shedule-form middle-form">
             <h1>Add Program</h1>
@@ -305,17 +310,16 @@
             <input type="submit" id="add-program-submit" value="Add Program">
           </form>
           <!-- Add Module -->
-          <form class="add-form1  shedule-form middle-form">
+          <form class="add-form1 shedule-form middle-form" id="add-module-form">
             <h1>Add Module</h1>
             <p>Add a new Module</p>
             <hr>
             <h4>Module Details</h4>
-            <input type="text" placeholder="title">
-            <textarea placeholder="Description"></textarea>
-            <input type="text" placeholder="Duration">
-            <input type="text" id="" placeholder="Code">
+            <input type="text" placeholder="Title" id="module-title">
+            <input type="text" placeholder="Duration" id="module-duration">
+            <input type="text" placeholder="Code" id="module-char">
             <input type="submit" value="Save Module">
-          </form>
+        </form>
           <!-- Add Student -->
           <form class="add-form1 shedule-form middle-form">
             <h1>Add Student</h1>
@@ -437,5 +441,6 @@
     <script src="./js/calander.js"></script>
     <script src="./js/batch.js"></script>
     <script src="./js/program.js"></script>
+    <script src="./js/module.js"></script>
   </body>
 </html>
