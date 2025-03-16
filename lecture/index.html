@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EduSync-Lecture</title>
+    <link rel="stylesheet" href="../style/main.css" />
+    <link rel="stylesheet" href="../style/style.css" />
+    <link rel="stylesheet" href="./style/dashboard.css" />
+    <link rel="stylesheet" href="./style/batches.css" />
+    <link rel="stylesheet" href="./style/student.css" />
+    <link rel="stylesheet" href="./style/calander.css" />
+    <link rel="stylesheet" href="./style/form.css" />
+    <link rel="stylesheet" href="./style/module.css" />
+    <link rel="stylesheet" href="./style/assigment.css" />
+    <script
+      src="https://kit.fontawesome.com/e82ac91667.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="main-container">
+      <nav>
+        <h1>EduSync</h1>
+        <ul>
+          <li class="nav-item active">
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+            <p>Class Shedule</p>
+          </li>
+          <li class="nav-item">
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+            <p>Batches</p>
+          </li>
+        </ul>
+        <div class="logout-btn">Log out</div>
+      </nav>
+      <div class="container-holder">
+        <div class="container active-contetnt">
+          <!-- class shedule content -->
+          <div class="grid">
+            <div class="shedule-calender">
+              <div class="card calendar">
+                <div class="calendar-header">
+                  <h2>Calendar</h2>
+                  <div class="calendar-nav">
+                    <button id="prevMonth">
+                      <i data-feather="chevron-left"></i>
+                    </button>
+                    <span id="currentMonth" style="margin: 0 16px"></span>
+                    <button id="nextMonth">
+                      <i data-feather="chevron-right"></i>
+                    </button>
+                  </div>
+                </div>
+                <div id="calendarGrid" class="calendar-grid"></div>
+                <button class="done-btn">Done</button>
+              </div>
+            </div>
+            <div class="shedule-sub-container">
+              <div class="shedule-add-btn">
+                <Button  class="form-btn">Add Shedule</Button>
+              </div>
+              <div>
+                <div class="shedule-spec-container">
+                  <div class="shedule-spec-scroller">
+                    <div class="shedule-details-card">
+                      <h4>Batch 121 DSA Session 10</h4>
+                      <h3>10:00 a.m to 12pm</h3>
+                      <h3>Hall E31</h3>
+                    </div>
+                    <div class="shedule-details-card">
+                      <h4>Batch 121 DSA Session 10</h4>
+                      <h3>10:00 a.m to 12pm</h3>
+                      <h3>Hall E31</h3>
+                    </div>
+                    <div class="shedule-details-card">
+                      <h4>Batch 121 DSA Session 10</h4>
+                      <h3>10:00 a.m to 12pm</h3>
+                      <h3>Hall E31</h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <!-- batches content -->
+          <div class="container-with-button">
+            <h1>Batches</h1>
+            <Button class="form-btn">Add Batch</Button>
+          </div>
+          <div class="scroller-frame">
+            <div class="batches-container" id="batch-container">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="batch-details-panel" id="batch-details-panel">
+        <div class="top-container-batch">
+          <h1>Batch 116</h1>
+          <i class="fa-solid fa-xmark" id="close-btn-panel"></i>
+        </div>
+        <div class="batch-details-contianer">
+          <div>Program </div>
+          <div>Bsc(hons) Software Engineering</div>
+          <div>Total Student</div>
+          <div>150</div>
+          <div>Start Date</div>
+          <div>2025/01/01</div>
+          <div>End Date</div>
+          <div>2027/01/01</div>
+        </div>
+        <button style="margin-left: 2vw;" id="assigment-manage-btn" >Manage Assigments</button>
+        <h3 style="color: white; margin-left: 2vw;">Student Details</h3>
+        <div class="batch-student-scroller">
+          <div class="batch-student-container">
+            <div class="batch-stu-card">
+              <div class="div1"><img src="../assets/image-2.png" alt=""></div>
+              <div class="div2">Hanska Ravishan</div>
+              <div class="div3">HD/CSE/116/1</div>
+              <div class="div4">View more</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Assigment panel -->
+      <div class="assigment-panel" id="assigment-panel">
+        <div class="top-assigment-container">
+          <div><i class="fa-solid fa-backward-step" id="back-assigment-mange"></i></div>
+          <div><h1>Assigment Manage Batch 116</h1></div>
+          <div></div>
+        </div>
+        <!-- Assigment Table -->
+        <div class="assigment-table-container">
+          <div class="assigment-table">
+            <table>
+              <thead>
+                  <tr>
+                      <th>Module Name</th>
+                      <th>Type</th>
+                      <th>Handout Date</th>
+                      <th>Submission Date</th>
+                      <th>Assignment Submission</th>
+                      <th>Manage Contents</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td>Module Name 01</td>
+                      <td>Course Work</td>
+                      <td>dd/mm/yyyy</td>
+                      <td>dd/mm/yyyy</td>
+                      <td><button class="upload-btn">Upload Assignment</button></td>
+                      <td><button class="manage-btn">Manage</button></td>
+                  </tr>
+                  <tr>
+                      <td>Module Name 01</td>
+                      <td>Presentation</td>
+                      <td>dd/mm/yyyy</td>
+                      <td>dd/mm/yyyy</td>
+                      <td><button class="upload-btn">Upload Assignment</button></td>
+                      <td><button class="manage-btn">Manage</button></td>
+                  </tr>
+                  <tr>
+                      <td>Module Name 02</td>
+                      <td>Course Work</td>
+                      <td>dd/mm/yyyy</td>
+                      <td>dd/mm/yyyy</td>
+                      <td><button class="upload-btn">Upload Assignment</button></td>
+                      <td><button class="manage-btn">Manage</button></td>
+                  </tr>
+                  <tr>
+                      <td>Module Name</td>
+                      <td>Presentation</td>
+                      <td>dd/mm/yyyy</td>
+                      <td>dd/mm/yyyy</td>
+                      <td><button class="upload-btn">Upload Assignment</button></td>
+                      <td><button class="manage-btn">Manage</button></td>
+                  </tr>
+              </tbody>
+          </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="./js/navigation.js"></script>
+    <script src="./js/calander.js"></script>
+    <script src="./js/batch.js"></script>
+  </body>
+</html>

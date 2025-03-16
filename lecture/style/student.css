@@ -1,0 +1,77 @@
+.student-serch-area{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.selector-dec{
+    border: none;
+    width: 10vw;
+    padding: 10px 5px;
+    background: white;
+    border-radius: 14px;
+}
+.selector-dec:focus{
+    border: none;
+}
+.input-search{
+    border: none;
+    width: 30vw;
+    padding: 10px 5px;
+    background: white;
+    border-radius: 14px;
+}
+.input-search:focus{
+    outline: none;
+}
+
+.scroller-frame-student{
+    margin-top: 3vh;
+    height: 80vh; /* Ensures it takes most of the viewport height */
+    overflow-y: auto; /* Enables vertical scrolling */
+    overflow-x: hidden;
+}
+
+.result-holder{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-auto-rows: minmax(100px, auto);
+    justify-items: center;
+    row-gap: 2vh;
+    column-gap: 2vw;
+    width: 97%;
+    padding-left: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.student-card-long {
+    width: 100%;
+    border-radius: 14px;
+    height: 10vh;
+    padding: 10px 15px;
+    background-color: white;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: start;
+    gap: 10px; /* Adds spacing between elements */
+}
+
+
+
+.view-more-btn{
+    position: absolute;
+    right: 5px;
+}
+.stu-details {
+    flex-grow: 1; /* Allows it to take available space */
+    background-color: transparent; /* Remove red background */
+}
+
+.stu-img-s {
+    width: 5vh;
+    height: 5vh;
+    border-radius: 50%;
+    background-color: red;
+    flex-shrink: 0; /* Prevents image from shrinking */
+}
