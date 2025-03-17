@@ -55,7 +55,7 @@
         <div class="logout-btn">Log out</div>
       </nav>
       <div class="container-holder">
-        <div class="container dashboard">
+        <div class="container dashboard  active-contetnt">
           <!-- dashboard content should add this -->
           <h1>Recently Added</h1>
           <div class="horiscroll-container-1"></div>
@@ -100,7 +100,7 @@
               </div>
               <div>
                 <div class="shedule-spec-container">
-                  <div class="shedule-spec-scroller">
+                  <div class="shedule-spec-scroller" id="shedule-spec-scroller">
                     <div class="shedule-details-card">
                       <h4>Batch 121 DSA Session 10</h4>
                       <h3>10:00 a.m to 12pm</h3>
@@ -176,7 +176,7 @@
             </div>
           </div>
         </div>
-        <div class="container active-contetnt">
+        <div class="container">
           <!-- student content -->
           <div class="container-with-button">
             <h1>Student</h1>
@@ -211,7 +211,7 @@
               <option value="">Select Batch</option>
               <option value="">Select Batch</option>
             </select>
-            <input type="text" class="input-search" />
+            <input type="search" id="search-student" class="input-search" />
           </div>
           <div class="scroller-frame-student">
             <div class="result-holder">
@@ -353,18 +353,18 @@
         </div>
         <div class="batch-details-contianer">
           <div>Program </div>
-          <div>Bsc(hons) Software Engineering</div>
+          <div id="panel-batch-title">Bsc(hons) Software Engineering</div>
           <div>Total Student</div>
-          <div>150</div>
+          <div id="panel-batch-stu">150</div>
           <div>Start Date</div>
-          <div>2025/01/01</div>
+          <div id="panel-batch-start">2025/01/01</div>
           <div>End Date</div>
-          <div>2027/01/01</div>
+          <div id="panel-batch-end">2027/01/01</div>
         </div>
         <button style="margin-left: 2vw;" id="assigment-manage-btn" >Manage Assigments</button>
         <h3 style="color: white; margin-left: 2vw;">Student Details</h3>
         <div class="batch-student-scroller">
-          <div class="batch-student-container">
+          <div class="batch-student-container" id="batch-student-container">
             <div class="batch-stu-card">
               <div class="div1"><img src="../assets/image-2.png" alt=""></div>
               <div class="div2">Hanska Ravishan</div>
@@ -382,54 +382,56 @@
           <div></div>
         </div>
         <!-- Assigment Table -->
-        <div class="assigment-table-container">
-          <div class="assigment-table">
-            <table>
-              <thead>
-                  <tr>
-                      <th>Module Name</th>
-                      <th>Type</th>
-                      <th>Handout Date</th>
-                      <th>Submission Date</th>
-                      <th>Assignment Submission</th>
-                      <th>Manage Contents</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr>
-                      <td>Module Name 01</td>
-                      <td>Course Work</td>
-                      <td>dd/mm/yyyy</td>
-                      <td>dd/mm/yyyy</td>
-                      <td><button class="upload-btn">Upload Assignment</button></td>
-                      <td><button class="manage-btn">Manage</button></td>
-                  </tr>
-                  <tr>
-                      <td>Module Name 01</td>
-                      <td>Presentation</td>
-                      <td>dd/mm/yyyy</td>
-                      <td>dd/mm/yyyy</td>
-                      <td><button class="upload-btn">Upload Assignment</button></td>
-                      <td><button class="manage-btn">Manage</button></td>
-                  </tr>
-                  <tr>
-                      <td>Module Name 02</td>
-                      <td>Course Work</td>
-                      <td>dd/mm/yyyy</td>
-                      <td>dd/mm/yyyy</td>
-                      <td><button class="upload-btn">Upload Assignment</button></td>
-                      <td><button class="manage-btn">Manage</button></td>
-                  </tr>
-                  <tr>
-                      <td>Module Name</td>
-                      <td>Presentation</td>
-                      <td>dd/mm/yyyy</td>
-                      <td>dd/mm/yyyy</td>
-                      <td><button class="upload-btn">Upload Assignment</button></td>
-                      <td><button class="manage-btn">Manage</button></td>
-                  </tr>
-              </tbody>
-          </table>
+        <div id="assigment-table-container">
+          <div class="assigment-table-container">
+            <div class="assigment-table">
+              <table>
+                <thead>
+                    <tr>
+                        <th>Module Name</th>
+                        <th>Type</th>
+                        <th>Handout Date</th>
+                        <th>Submission Date</th>
+                        <th>Assignment Submission</th>
+                        <th>Manage Contents</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Module Name 01</td>
+                        <td>Course Work</td>
+                        <td>dd/mm/yyyy</td>
+                        <td>dd/mm/yyyy</td>
+                        <td><button class="upload-btn">Upload Assignment</button></td>
+                        <td><button class="manage-btn">Manage</button></td>
+                    </tr>
+                    <tr>
+                        <td>Module Name 01</td>
+                        <td>Presentation</td>
+                        <td>dd/mm/yyyy</td>
+                        <td>dd/mm/yyyy</td>
+                        <td><button class="upload-btn">Upload Assignment</button></td>
+                        <td><button class="manage-btn">Manage</button></td>
+                    </tr>
+                    <tr>
+                        <td>Module Name 02</td>
+                        <td>Course Work</td>
+                        <td>dd/mm/yyyy</td>
+                        <td>dd/mm/yyyy</td>
+                        <td><button class="upload-btn">Upload Assignment</button></td>
+                        <td><button class="manage-btn">Manage</button></td>
+                    </tr>
+                    <tr>
+                        <td>Module Name</td>
+                        <td>Presentation</td>
+                        <td>dd/mm/yyyy</td>
+                        <td>dd/mm/yyyy</td>
+                        <td><button class="upload-btn">Upload Assignment</button></td>
+                        <td><button class="manage-btn">Manage</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
           </div>
         </div>
       </div>
@@ -443,5 +445,6 @@
     <script src="./js/batch.js"></script>
     <script src="./js/program.js"></script>
     <script src="./js/module.js"></script>
+    <script src="./js/student.js"></script>
   </body>
 </html>
