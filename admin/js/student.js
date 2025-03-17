@@ -20,7 +20,7 @@ async function loadBatches() {
             batches.forEach(batch => {
                 const option = document.createElement('option');
                 option.value = batch.batch_id;
-                option.textContent = batch.title;
+                option.textContent = `${batch.title} batch ${batch.batch_id}`;
                 select.appendChild(option);
             });
 
@@ -35,6 +35,7 @@ async function loadBatches() {
 
 // Function to load students from API
 async function loadStudents() {
+    students = [];
     try {
         const response = await fetch('http://localhost:8000/v1/student'); // Replace with your actual API
         if (!response.ok) throw new Error('Failed to fetch students');
@@ -64,7 +65,7 @@ function renderStudents(show_student) {
             <div class="stu-img-s"></div>
             <div class="stu-details">
                 <h3>${student.first_name} ${student.last_name} / ID: ${student.username} / NIC: ${student.mobile}</h3>
-                <p>${student.program}</p>
+                <p>Batch ${student.batch_id} - ${student.title}</p>
             </div>
             <h4 class="view-more-btn" onclick="viewStudent(${student.student_id})">View more</h4>
         `;
@@ -109,3 +110,66 @@ document.getElementById('search-student').addEventListener('input', async functi
 function viewStudent(studentId) {
     alert(`View details for Student ID: ${studentId}`);
 }
+
+// 
+document.addEventListener("DOMContentLoaded", async () => {
+    const batchSelect = document.getElementById("student-batch");
+
+    // Fetch available batches
+    try {
+        const response = await fetch("http://localhost:8000/v1/batch");
+        if (!response.ok) throw new Error("Failed to load batches");
+
+        const batches = await response.json();
+        batchSelect.innerHTML = `<option selected disabled>Select Batch</option>`; // Reset options
+
+        batches.forEach(batch => {
+            const option = document.createElement("option");
+            option.value = batch.batch_id;
+            option.textContent = `Batch ${batch.batch_id} - ${batch.title}`;
+            batchSelect.appendChild(option);
+        });
+    } catch (error) {
+        console.error("Error loading batches:", error);
+        batchSelect.innerHTML = `<option disabled>Error loading batches</option>`;
+    }
+});
+
+// Handle form submission
+document.getElementById("add-student-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    // Get form values
+    const email = document.getElementById("student-email").value.trim();
+    const first_name = document.getElementById("student-firstname").value.trim();
+    const last_name = document.getElementById("student-lastname").value.trim();
+    const mobile = document.getElementById("student-mobile").value.trim();
+    const batch = document.getElementById("student-batch").value;
+
+    // Validation
+    if (!email || !first_name || !last_name || !mobile || !batch) {
+        alert("Please fill in all fields");
+        return;
+    }
+
+    // Create request payload
+    const studentData = { email, first_name, last_name, mobile, batch };
+
+    try {
+        const response = await fetch("http://localhost:8000/v1/student/add", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(studentData),
+        });
+
+        if (!response.ok) throw new Error("Failed to add student");
+
+        alert("Student added successfully!");
+        loadStudents();
+        // Clear the form after successful submission
+        document.getElementById("add-student-form").reset();
+    } catch (error) {
+        console.error("Error adding student:", error);
+        alert("Error adding student. Please try again.");
+    }
+});

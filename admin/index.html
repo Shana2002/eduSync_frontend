@@ -8,15 +8,16 @@
     <link rel="stylesheet" href="../style/style.css" />
     <link rel="stylesheet" href="./style/dashboard.css" />
     <link rel="stylesheet" href="./style/batches.css" />
-    <link rel="stylesheet" href="./style/student.css" />
     <link rel="stylesheet" href="./style/calander.css" />
     <link rel="stylesheet" href="./style/form.css" />
     <link rel="stylesheet" href="./style/module.css" />
     <link rel="stylesheet" href="./style/assigment.css" />
+    <link rel="stylesheet" href="./style/student.css" />
     <script
       src="https://kit.fontawesome.com/e82ac91667.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
     <div class="main-container">
@@ -319,18 +320,25 @@
             <input type="text" placeholder="Duration" id="module-duration">
             <input type="text" placeholder="Code" id="module-char">
             <input type="submit" value="Save Module">
-        </form>
+          </form>
           <!-- Add Student -->
-          <form class="add-form1 shedule-form middle-form">
+          <form class="add-form1 shedule-form middle-form" id="add-student-form">
             <h1>Add Student</h1>
             <p>Add a new student to your Batch</p>
             <hr>
             <h4>Student Details</h4>
-            <input type="text" placeholder="Name">
-
-            <textarea placeholder="Description"></textarea>
-            <input type="text" placeholder="Duration">
-            <input type="submit" value="Save Module">
+            
+            <input type="email" placeholder="Email" id="student-email" required>
+            <input type="text" placeholder="First Name" id="student-firstname" required>
+            <input type="text" placeholder="Last Name" id="student-lastname" required>
+            <input type="text" placeholder="Mobile" id="student-mobile" required>
+        
+            <label for="student-batch">Select Batch</label>
+            <select id="student-batch" required>
+                <option selected disabled>Loading batches...</option>
+            </select>
+        
+            <input type="submit" value="Add Student">
           </form>
           <!-- Add Assigment -->
           <form class="shedule-form middle-form">
@@ -435,6 +443,113 @@
           </div>
         </div>
       </div>
+      <!-- Student Details Panel -->
+      <div class="stu-detail-panel" id="stu-detail-panel">
+        <div class="back-container-stu">
+          <i class="fa-solid fa-backward-step" id="back-student-detail"></i>
+        </div>
+        <div class="stu-detail-scroller">
+          <div class="stu-top-panel">
+            <div class="stu-detail-1">
+                <div class="div1"><img src="data:image/jpeg;base64,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" alt=""></div>
+                <div class="div2"></div>
+                <div class="div3"><h1>Hellow Rattan yaluwane</h1></div>
+                <div class="div4"><h5>HD software Engineering</h5><hr></div>
+                <div class="div6">
+                  <div><p>Name</p></div>
+                  <div><p>Yaluwa</p></div>
+                  <div>Student Number</div>
+                  <div>4</div>
+                  <div>Email</div>
+                  <div></div>
+                  <div>Mobile</div>
+                  <div>8</div>
+                  <div>Birthday</div>
+                  <div>10</div>
+                  <div>Date Joined</div>
+                  <div>12</div>
+                </div>
+            </div>
+            <div class="stu-summey-panel">
+              <h3>Summary of Attendance</h3>
+              <div class="legend">
+                <span><div style="background: #0D0B69;"></div> Attendants</span>
+              </div>
+              <canvas id="summaryChart"></canvas>
+            </div>
+          </div>
+          <div class="stu-static-panel">
+            <h2>HD software Engineering</h2>
+            <div class="module-header">Module 01: Module Name <span>▼</span></div>
+            <div class="module-content">
+              <div class="info-cards">
+                  <div class="info-card">
+                      <h3>Sessions</h3>
+                      <p>10 Sessions covered, 1 session available</p>
+                  </div>
+                  <div class="info-card">
+                      <h3>Attendance</h3>
+                      <p>10 Sessions gone, 9 attendance found</p>
+                  </div>
+                  <div class="info-card">
+                      <h3>Assignments</h3>
+                      <a href="#" class="download-link">Download</a>
+                  </div>
+              </div>
+      
+              <!-- Scrollable Session List -->
+              <div class="session-list">
+                  <ul>
+                      <li><span>1. Session 01</span> <span class="attended">Attended</span></li>
+                      <li><span>2. Session 02</span> <span class="attended">Attended</span></li>
+                      <li><span>3. Session 03</span> <span class="not-attended">Not Attended</span></li>
+                      <li><span>4. Session 04</span> <span class="attended">Attended</span></li>
+                      <li><span>5. Session 05</span> <span class="attended">Attended</span></li>
+                      <li><span>6. Session 06</span> <span class="attended">Attended</span></li>
+                      <li><span>7. Session 07</span> <span class="attended">Attended</span></li>
+                      <li><span>8. Session 08</span> <span class="attended">Attended</span></li>
+                      <li><span>9. Session 09</span> <span class="attended">Attended</span></li>
+                      <li><span>10. Session 10</span> <span class="not-attended">Not Attended</span></li>
+                  </ul>
+              </div>
+            </div>
+            <div class="module-header">Module 01: Module Name <span>▼</span></div>
+            <div class="module-content">
+              <div class="info-cards">
+                  <div class="info-card">
+                      <h3>Sessions</h3>
+                      <p>10 Sessions covered, 1 session available</p>
+                  </div>
+                  <div class="info-card">
+                      <h3>Attendance</h3>
+                      <p>10 Sessions gone, 9 attendance found</p>
+                  </div>
+                  <div class="info-card">
+                      <h3>Assignments</h3>
+                      <a href="#" class="download-link">Download</a>
+                  </div>
+              </div>
+      
+              <!-- Scrollable Session List -->
+              <div class="session-list">
+                  <ul>
+                      <li><span>1. Session 01</span> <span class="attended">Attended</span></li>
+                      <li><span>2. Session 02</span> <span class="attended">Attended</span></li>
+                      <li><span>3. Session 03</span> <span class="not-attended">Not Attended</span></li>
+                      <li><span>4. Session 04</span> <span class="attended">Attended</span></li>
+                      <li><span>5. Session 05</span> <span class="attended">Attended</span></li>
+                      <li><span>6. Session 06</span> <span class="attended">Attended</span></li>
+                      <li><span>7. Session 07</span> <span class="attended">Attended</span></li>
+                      <li><span>8. Session 08</span> <span class="attended">Attended</span></li>
+                      <li><span>9. Session 09</span> <span class="attended">Attended</span></li>
+                      <li><span>10. Session 10</span> <span class="not-attended">Not Attended</span></li>
+                  </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- student details panel end -->
     </div>
     
 
@@ -446,5 +561,7 @@
     <script src="./js/program.js"></script>
     <script src="./js/module.js"></script>
     <script src="./js/student.js"></script>
+    <script src="./js/chartdetails.js"></script>
+    <script type="module" src="./js/studentModule.js"></script>
   </body>
 </html>

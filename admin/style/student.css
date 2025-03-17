@@ -75,3 +75,220 @@
     background-color: red;
     flex-shrink: 0; /* Prevents image from shrinking */
 }
+
+
+/* student panel */
+.stu-detail-panel{
+    position: fixed;
+    width: 84vw;
+    background-color: #F2F2F2;
+    height: 100vh;
+    right: 0vw;
+    transition: right 0.2s ease-in-out;
+    color: white;
+}
+.back-container-stu{
+    margin: 1vh 1vw;
+}
+.stu-detail-scroller{
+    margin: 1vh 1vw;
+    width: 82vw;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    max-height: 90vh;  /* Adjust based on available space */
+    scrollbar-width: thin; /* Optional: Makes scrollbar thinner in Firefox */
+    scrollbar-color: #ccc transparent; /* Optional: Colors the scrollbar */
+    overflow-x: hidden;
+}
+.stu-top-panel{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.stu-detail-1{
+    background-color: white;
+    width: 70%;
+    height: 40vh;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    border-radius: 14px;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(7, 1fr);
+}
+
+.stu-summey-panel{
+    width: 29%;
+    height: 40vh;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+/* <div class="stu-top-panel">
+            <div class="stu-detail-1"></div>
+            <div class="stu-summey-panel"></div>
+          </div> */
+
+.stu-detail-1 .div1 {
+    grid-column: span 2 / span 2;
+    grid-row: span 3 / span 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.stu-detail-1 .div1 img{
+    width: 15vh;
+    height: 15vh;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.stu-detail-1 .div2 {
+    grid-column: span 2 / span 2;
+    grid-row: span 4 / span 4;
+    grid-column-start: 1;
+    grid-row-start: 4;
+}
+
+.stu-detail-1 .div3 {
+    grid-column: span 8 / span 8;
+    grid-column-start: 3;
+    grid-row-start: 1;
+}
+
+.stu-detail-1 .div4 {
+    grid-column: span 8 / span 8;
+    grid-column-start: 3;
+    grid-row-start: 2;
+}
+
+.stu-detail-1 .div6 {
+    grid-column: span 8 / span 8;
+    grid-row: span 4 / span 4;
+    grid-column-start: 3;
+    grid-row-start: 3;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 8px;
+    color: black;
+}
+.stu-detail-1 .div6 div:nth-child(odd) {
+    font-weight: bold;
+}
+
+/* chart */
+.legend {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+.legend span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: black;
+}
+.legend div {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    color: black;
+}
+canvas{
+    width: 70% !important;
+            height: 70% !important;
+}
+
+/* static panel */
+.stu-static-panel{
+    margin-top: 2vh;background-color: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    border-radius: 14px;
+    width: 80vw;
+    padding: 1vh 1vw;
+}
+.module-header {
+    background: #dbeafe;
+    padding: 12px;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: black;
+}
+
+.module-content {
+    display: none;
+    background: white;
+    padding: 15px;
+    margin-top: 5px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.info-cards {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.info-card {
+    background: #dbeafe;
+    padding: 10px;
+    flex: 1;
+    border-radius: 5px;
+}
+
+.info-card h3 {
+    font-size: 14px;
+    color: #1e3a8a;
+}
+
+.info-card p {
+    font-size: 12px;
+    color: #374151;
+}
+
+.download-link {
+    text-decoration: none;
+    color: #2563eb;
+    font-size: 12px;
+    float: right;
+}
+
+/* Scrollable Session List */
+.session-list {
+    margin-top: 15px;
+    overflow-y: auto;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+    color: black;
+}
+
+.session-list ul {
+    list-style: none;
+}
+
+.session-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    font-size: 14px;
+}
+
+.attended {
+    color: #2563eb;
+}
+
+.not-attended {
+    color: #dc2626;
+}
