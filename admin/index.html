@@ -247,36 +247,50 @@
         </div>
         <div class="form-content-container">
           <!-- Shedule class form -->
-          <form  class="add-form1 shedule-form middle-form">
-            <h1>Shedule a Class</h1>
-            <p>Set a new Session on your way</p>
-            <hr>
-            <h4>Basic Details</h4>
-            <input type="text" placeholder="Session name">
-            <textarea placeholder="Session description"></textarea>
-            <select>
-                <option selected disabled>Lecture hall</option>
-            </select>
-            <select>
-                <option selected disabled>Batch number</option>
-            </select>
-            <input type="text" placeholder="Lecture's name">
-
-            <div class="date-time">
-                <label>
-                    <span>📅 Date</span>
-                    <input type="date">
-                </label>
-                <label>
-                    <span>⏰ Start Time</span>
-                    <input type="time">
-                </label>
-                <label>
-                    <span>⏰ End Time</span>
-                    <input type="time">
-                </label>
-            </div>
-            <input type="submit" value="Add Shedule">
+          <form class="add-form1 schedule-form middle-form">
+              <h1>Schedule a Class</h1>
+              <p>Set a new session on your way</p>
+              <hr>
+          
+              <h4>Basic Details</h4>
+          
+              <label for="batch">Batch Number:</label>
+              <select id="batch" required>
+                  <option selected disabled>Loading batches...</option>
+              </select>
+          
+              <label for="module">Module:</label>
+              <select id="module" required disabled>
+                  <option selected disabled>Select Batch First</option>
+              </select>
+          
+              <label for="session-number">Session Name:</label>
+              <input type="text" id="session-number" placeholder="Auto-generated session name" readonly>
+          
+              <label for="lecture-hall">Lecture Hall:</label>
+              <select id="lecture-hall" required disabled>
+                  <option selected disabled>Select Module First</option>
+              </select>
+          
+              <label for="lecture-name">Lecture's Name:</label>
+              <input type="text" id="lecture-name" placeholder="Lecture's name" required>
+          
+              <div class="date-time">
+                  <label>
+                      <span>📅 Date</span>
+                      <input type="date" required>
+                  </label>
+                  <label>
+                      <span>⏰ Start Time</span>
+                      <input type="time" required>
+                  </label>
+                  <label>
+                      <span>⏰ End Time</span>
+                      <input type="time" required>
+                  </label>
+              </div>
+          
+              <input type="submit" value="Add Schedule">
           </form>
           <!-- Add batch form -->
           <form class="add-form1 shedule-form middle-form" id="add-batch-form">
@@ -496,6 +510,7 @@
     <script src="./js/module.js"></script>
     <script type="module" src="./js/student.js"></script>
     <script src="./js/chartdetails.js"></script>
+    <script src="./js/addshedule.js"></script>
     <script type="module" src="./js/studentModule.js"></script>
   </body>
 </html>
