@@ -43,3 +43,8 @@ document.getElementById('back-assigment-mange').addEventListener('click',(e)=>{
     e.preventDefault();
     document.getElementById('assigment-panel').classList.remove('toggle-assigment');
 })
+
+document.getElementById('back-student-detail').addEventListener('click',(e)=>{
+    e.preventDefault();
+    document.getElementById('stu-detail-panel').classList.remove('toggle-stu-panel');
+})

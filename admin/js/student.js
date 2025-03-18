@@ -1,3 +1,5 @@
+import {LoadStudentModuleDetails,LoadStudentDetails} from './studentModule.js'
+
 document.addEventListener('DOMContentLoaded', () => {
     loadBatches(); 
     loadStudents();
@@ -52,7 +54,7 @@ function renderStudents(show_student) {
     const resultHolder = document.querySelector('.result-holder');
     resultHolder.innerHTML = '';
 
-    if (students.length === 0) {
+    if (show_student.length === 0) {
         resultHolder.innerHTML = '<p style="color: gray;">No students found.</p>';
         return;
     }
@@ -67,12 +69,23 @@ function renderStudents(show_student) {
                 <h3>${student.first_name} ${student.last_name} / ID: ${student.username} / NIC: ${student.mobile}</h3>
                 <p>Batch ${student.batch_id} - ${student.title}</p>
             </div>
-            <h4 class="view-more-btn" onclick="viewStudent(${student.student_id})">View more</h4>
+            <h4 class="view-more-btn" data-student-id="${student.student_id}">View more</h4>
         `;
 
         resultHolder.appendChild(studentCard);
     });
+
+    // Corrected event listener outside the loop
+    document.querySelectorAll('.view-more-btn').forEach((btn) => {
+        btn.addEventListener('click', function () {
+            const studentId = this.getAttribute('data-student-id');
+            document.getElementById('stu-detail-panel').classList.add('toggle-stu-panel');
+            LoadStudentDetails(studentId);
+            LoadStudentModuleDetails(studentId)
+        });
+    });
 }
+
 
 // Function to filter students based on selected batch
 async function filterStudents() {
@@ -107,8 +120,9 @@ document.getElementById('search-student').addEventListener('input', async functi
 });
 
 // Function to handle view more click
-function viewStudent(studentId) {
+export function viewStudent(studentId) {
     alert(`View details for Student ID: ${studentId}`);
+    document.getElementById('stu-detail-panel').classList.add('toggle-stu-panel')
 }
 
 // 

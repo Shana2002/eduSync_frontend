@@ -83,9 +83,12 @@
     width: 84vw;
     background-color: #F2F2F2;
     height: 100vh;
-    right: 0vw;
+    right: -84vw;
     transition: right 0.2s ease-in-out;
     color: white;
+}
+.toggle-stu-panel{
+    right: 0vw;
 }
 .back-container-stu{
     margin: 1vh 1vw;
@@ -291,4 +294,8 @@ canvas{
 
 .not-attended {
     color: #dc2626;
+}
+
+.not-start{
+    color: #0e5e36;
 }

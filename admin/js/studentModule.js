@@ -40,7 +40,7 @@ export const LoadStudentModuleDetails = async (student_id) => {
                             ${dataModule.AttandanceDetails.map((session, sessionIndex) => `
                                 <li>
                                     <span>${sessionIndex + 1}. ${session.session_name}</span>
-                                    <span class="${session.status==='Attended' ? 'attended' : 'not-attended'}">
+                                    <span class="${session.status==='Attended' ? 'attended' : session.status==='Not Attended'?'not-attended':'not-start'}">
                                         ${session.status==='Attended' ? 'Attended' : session.status==='Not Attended' ?'Not Attended':'Not Started Yet'}
                                     </span>
                                 </li>
@@ -105,8 +105,5 @@ export const LoadStudentDetails = async (student_id) => {
     }
 };
 
-LoadStudentDetails(1);
 
-  
-LoadStudentModuleDetails(1);
   
