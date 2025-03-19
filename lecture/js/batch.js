@@ -8,7 +8,10 @@ async function loadBatches() {
 
     try {
         // Fetch batch data from an API
-        const response = await fetch('http://localhost:8000/v1/batch');
+        const response = await fetch('http://localhost:8000/v1/batch/lecture',{
+            credentials:'include',
+            method:'GET'
+        });
         if (!response.ok) {
             throw new Error('Failed to fetch batch data');
         }
@@ -78,7 +81,6 @@ async function loadBatchDetails(batch_id){
         batchPanel.innerHTML = `<p style="color: red;">Failed to load programs. Please try again.</p>`;
     }
     await LoadStudentsBatchPanel(batch_id);
-    await LoadBatchAssigment(batch_id);
 }
 
 async function LoadStudentsBatchPanel(batch_id) {
@@ -86,7 +88,10 @@ async function LoadStudentsBatchPanel(batch_id) {
     batchStudentPanel.innerHTML='';
     try {
         // Fetch batch data from an API
-        const response = await fetch(`http://localhost:8000/v1/batch/${batch_id}/students`);
+        const response = await fetch(`http://localhost:8000/v1/module/lecture/${batch_id}`,{
+            method:'GET',
+            credentials:'include'
+        });
         if (!response.ok) {
             throw new Error('Failed to fetch batch data');
         }
@@ -101,17 +106,12 @@ async function LoadStudentsBatchPanel(batch_id) {
 
             studentCard.innerHTML = `
                 <div class="div1"><img src="../assets/image-2.png" alt=""></div>
-                <div class="div2">${student.first_name} ${student.last_name}</div>
-                <div class="div3">${student.username}</div>
-                <div class="div4">View more</div>
+                <div class="div2">${student.title}</div>
+                <div class="div3">Sessions${student.sessions}</div>
+                <div class="div4" onClick="LoadBatchAssigment(${student.module_assign_id})">View Assigments</div>
             `;
-
-            // Add click event listener
-            // batchCard.addEventListener('click', function () {
-            //     showBatchDetailsPanel(batch.batch_id)
-            // });
-
-            batchStudentPanel.appendChild(studentCard);
+             batchStudentPanel.appendChild(studentCard);
+            
         });
 
     } catch (error) {
@@ -120,13 +120,17 @@ async function LoadStudentsBatchPanel(batch_id) {
     }
 }
 
-async function LoadBatchAssigment(batch_id) {
+async function LoadBatchAssigment(module_assign) {
     const batchStudentPanel = document.getElementById('assigment-table-container');
+    document.getElementById('assigment-panel').classList.add('toggle-assigment');
     batchStudentPanel.innerHTML = '';
 
     try {
         // Fetch batch assignment data from the API
-        const response = await fetch(`http://localhost:8000/v1/assigment/batch/${batch_id}`);
+        const response = await fetch(`http://localhost:8000/v1/assigment/lecture/${module_assign}`, {
+            method: 'GET',
+            credentials: 'include'
+        });
 
         if (!response.ok) {
             throw new Error('Failed to fetch batch data');
@@ -146,25 +150,30 @@ async function LoadBatchAssigment(batch_id) {
                     <table>
                         <thead>
                             <tr>
-                                <th>Module Name</th>
-                                <th>Type</th>
-                                <th>Handout Date</th>
-                                <th>Submission Date</th>
-                                <th>Assignment Submission</th>
-                                <th>Manage Contents</th>
+                                <th>Name</th>
+                                <th>ID</th>
+                                <th>Status</th>
+                                <th>Marks</th>
+                                <th>Download</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>`;
 
         assignments.forEach(assignment => {
+            const marksInput = assignment.marks_obtain === null
+                ? `<input type="number" class="table-input" id="marks-${assignment.username}" placeholder="Enter Marks" min="0" max="100" style="width:60px;">
+                   <button onclick="submitMarks('${assignment.username}')">Submit</button>`
+                : assignment.marks_obtain;
+
             tableHTML += `
                 <tr>
-                    <td>${assignment.title}</td>
-                    <td>${assignment.assigment_type}</td>
-                    <td>${assignment.start_date}</td>
-                    <td>${assignment.end_date}</td>
-                    <td><button class="upload-btn" onclick="uploadAssignment(${assignment.assigment_id})">Upload Assignment</button></td>
-                    <td><button class="manage-btn" onclick="manageContents(${assignment.assigment_id})">Manage</button></td>
+                    <td>${assignment.first_name} ${assignment.last_name}</td>
+                    <td>${assignment.username}</td>
+                    <td>${assignment.status || 'Not Submitted'}</td>
+                    <td>${marksInput}</td>
+                    <td>${assignment.file ? `<a href="${assignment.file}" download>Download</a>` : '-'}</td>
+                    <td>${assignment.marks_obtain === null ? 'Pending' : 'Graded'}</td>
                 </tr>`;
         });
 
@@ -180,6 +189,36 @@ async function LoadBatchAssigment(batch_id) {
         batchStudentPanel.innerHTML = `<p style="color: red;">Failed to load assignments. Please try again.</p>`;
     }
 }
+
+// Function to submit marks
+async function submitMarks(username) {
+    const marks = document.getElementById(`marks-${username}`).value;
+    
+    if (!marks || marks < 0 || marks > 100) {
+        alert("Please enter valid marks between 0-100.");
+        return;
+    }
+
+    try {
+        const response = await fetch(`http://localhost:8000/v1/assigment/marks/${username}`, {
+            method: 'POST',
+            credentials: 'include',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ marks_obtain: marks })
+        });
+
+        if (!response.ok) {
+            throw new Error("Failed to submit marks");
+        }
+
+        alert("Marks submitted successfully!");
+        LoadBatchAssigment(module_assign); // Refresh table after submission
+    } catch (error) {
+        console.error('Error submitting marks:', error);
+        alert("Error submitting marks. Please try again.");
+    }
+}
+
 
 // Example functions for upload and manage buttons
 function uploadAssignment(assignmentId) {

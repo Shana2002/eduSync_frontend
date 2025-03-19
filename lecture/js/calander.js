@@ -89,7 +89,10 @@ async function LoadShedules(date) {
 
   try {
       // Fetch schedule data from the API
-      const response = await fetch(`http://localhost:8000/v1/session/${date}`);
+      const response = await fetch(`http://localhost:8000/v1/session/lecture/session/${date}`,{
+        method:'GET',
+        credentials:'include'
+      });
       if (!response.ok) {
           throw new Error('Failed to fetch schedule data');
       }

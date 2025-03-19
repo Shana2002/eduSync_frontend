@@ -30,10 +30,6 @@ document.getElementById('close-btn-panel').addEventListener("click",(e)=>{
     document.getElementById('batch-details-panel').classList.remove('toglle-batch');
 })
 
-document.getElementById('assigment-manage-btn').addEventListener('click',(e)=>{
-    e.preventDefault();
-    document.getElementById('assigment-panel').classList.add('toggle-assigment');
-})
 
 document.getElementById('back-assigment-mange').addEventListener('click',(e)=>{
     e.preventDefault();

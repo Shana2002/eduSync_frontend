@@ -62,6 +62,7 @@
 .view-more-btn{
     position: absolute;
     right: 5px;
+    cursor: pointer;
 }
 .stu-details {
     flex-grow: 1; /* Allows it to take available space */
