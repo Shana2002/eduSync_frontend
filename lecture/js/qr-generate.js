@@ -18,7 +18,7 @@ async function generateQr(session){
         const response = await fetch('http://localhost:8000/v1/attandance/generate-qr',{
             method:'GET',
             credentials:'include',
-            body: JSON.stringify(programData)
+            body: JSON.stringify(session)
         });
         if (!response.ok) {
             throw new Error('Failed to fetch batch data');

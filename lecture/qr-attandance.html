@@ -3,28 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Code Generator</title>
+    <title>Scan QR for Mark Attendance</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 50px;
+            margin: 0;
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f4f4;
+        }
+        .container {
+            display: flex;
+            width: 80vw;
+            height: 80vh;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .left {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #e0e0e0;
         }
         #qr-container {
-            margin-top: 20px;
+            width: 500px;
+            height: 500px;
+        }
+        .right {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+        }
+        #countdown {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            color: red;
+        }
+        #student-count {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        button:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
-    <h2>QR Code Generator</h2>
-    <p>Scan the QR Code to get the number</p>
-    
-    <div id="qr-container"></div>
+    <div class="container">
+        <div class="left">
+            <div id="qr-container"></div>
+        </div>
+        <div class="right">
+            <div id="countdown">5:00</div>
+            <span id="student-count" style="text-align: center;">Students: <br> 0</span>
+            <button onclick="refreshPage()">Refresh</button>
+        </div>
+    </div>
 
     <script>
-        // Function to get query parameters
-        
+
+        function startCountdown(duration) {
+            let timer = duration, minutes, seconds;
+            let countdownElement = document.getElementById("countdown");
+            let interval = setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+                countdownElement.textContent = minutes + ":" + seconds;
+                if (--timer < 0) {
+                    clearInterval(interval);
+                    document.getElementById("qr-container").innerHTML = "QR Code Expired";
+                }
+            }, 1000);
+        }
+
+        generateQRCode();
+        startCountdown(300); // 5-minute countdown
     </script>
+    <script src="./js/qr-generate.js"></script>
 </body>
 </html>
