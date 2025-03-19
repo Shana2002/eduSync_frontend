@@ -59,7 +59,7 @@
         <div class="container dashboard  active-contetnt">
           <!-- dashboard content should add this -->
           <h1>Recently Added</h1>
-          <div class="horiscroll-container-1"></div>
+          <div class="horiscroll-container-1" id="dashboard-program-container"></div>
           <h2>Day to Day Orverview</h2>
           <div class="flex-col">
             <div class="chart-container">
@@ -280,7 +280,7 @@
         </div>
         <div class="form-content-container">
           <!-- Shedule class form -->
-          <form class="add-form1 schedule-form middle-form">
+          <form class="add-form1 schedule-form middle-form" id="add-shedule-form">
               <h1>Schedule a Class</h1>
               <p>Set a new session on your way</p>
               <hr>
@@ -306,20 +306,20 @@
               </select>
           
               <label for="lecture-name">Lecture's Name:</label>
-              <input type="text" id="lecture-name" placeholder="Lecture's name" required>
-          
+              <input type="text" id="lecture-name" placeholder="Auto-generated Lecture's name" readonly required>
+              <input type="hidden" id="module-assign-id">
               <div class="date-time">
                   <label>
                       <span>📅 Date</span>
-                      <input type="date" required>
+                      <input type="date" id="date-shedule" required>
                   </label>
                   <label>
                       <span>⏰ Start Time</span>
-                      <input type="time" required>
+                      <input type="time" id="start-time-shedule" required>
                   </label>
                   <label>
                       <span>⏰ End Time</span>
-                      <input type="time" required>
+                      <input type="time" id="end-time-shedule" required>
                   </label>
               </div>
           
@@ -416,7 +416,8 @@
           <div>End Date</div>
           <div id="panel-batch-end">2027/01/01</div>
         </div>
-        <button style="margin-left: 2vw;" id="assigment-manage-btn" >Manage Assigments</button>
+        <button class="btn-batch" style="margin-left: 2vw;" id="assigment-manage-btn" >Manage Assigments</button>
+        <button class="btn-batch" style="margin-left: 2vw;" id="lecture-manage-btn" >Manage Lectures</button>
         <h3 style="color: white; margin-left: 2vw;">Student Details</h3>
         <div class="batch-student-scroller">
           <div class="batch-student-container" id="batch-student-container">
@@ -490,6 +491,35 @@
           </div>
         </div>
       </div>
+      <!-- Lectures Panle -->
+      <div class="assigment-panel" id="lecture-panel">
+        <div class="top-assigment-container">
+          <div><i class="fa-solid fa-backward-step" id="back-lecture-mange"></i></div>
+          <div><h1>Lecture Manage Batch 116</h1></div>
+          <div></div>
+        </div>
+        <!-- lecture Table -->
+        <div id="lecture-table-container">
+          <div class="assigment-table-container">
+            <div class="assigment-table">
+              <table>
+                <thead>
+                    <tr>
+                        <th>Module Name</th>
+                        <th>Lecture</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Module Name 01</td>
+                        <td>Course Work</td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+          </div>
+        </div>
+      </div>
       <!-- Student Details Panel -->
       <div class="stu-detail-panel" id="stu-detail-panel">
         <div class="back-container-stu">
@@ -531,6 +561,18 @@
         </div>
       </div>
       <!-- student details panel end -->
+      <!-- Assign lecture form -->
+       <div class="assign-lectur-form" id="assign-lectur-form">
+        <i class="fa-solid fa-xmark" id="close-btn-lec-asigm"></i>
+        <form id="assign-lecture">
+          <h1 id="ass-lec-batch">Batch 1</h1>
+          <h2 id="ass-lec-module">Module</h2>
+          <input type="hidden" id="batch-id">
+          <input type="hidden" id="module-id">
+          <select id="lecture-select-ass-batch"></select>
+          <input type="submit" value="Assign Lecture">
+        </form>
+       </div>
     </div>
     
 
@@ -543,6 +585,7 @@
     <script src="./js/module.js"></script>
     <script type="module" src="./js/student.js"></script>
     <script src="./js/chartdetails.js"></script>
+    <script src="./js/dashboard.js"></script>
     <script src="./js/addshedule.js"></script>
     <script type="module" src="./js/studentModule.js"></script>
   </body>

@@ -138,11 +138,41 @@
     grid-row-start: 1;
     color: #000;
 }
-#assigment-manage-btn{
+.btn-batch{
     border: 1px solid white !important;
     margin: 1vh 0;
 } 
-#assigment-manage-btn:hover{
+.btn-batch:hover{
     background-color: white !important;
     color: #435D82;
 } 
+
+.assign-lectur-form{
+    position: fixed;
+    width: 20vw;
+    background-color: var(--primary-color);
+    height: 100vh;
+    right: -22vw;
+    padding: 1vw;
+}
+.show-assign-lecture-form{
+    right: 0;
+}
+.assign-lectur-form form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.assign-lectur-form h1{
+    color: white;
+}
+.assign-lectur-form h2{
+    color: white;
+}
+.assign-lectur-form i{
+    position: relative;
+    left: 18vw;
+    color: white;
+    font-size: 30px;
+}

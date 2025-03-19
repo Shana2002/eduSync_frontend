@@ -39,12 +39,26 @@ document.getElementById('assigment-manage-btn').addEventListener('click',(e)=>{
     document.getElementById('assigment-panel').classList.add('toggle-assigment');
 })
 
+document.getElementById('lecture-manage-btn').addEventListener('click',(e)=>{
+    e.preventDefault();
+    document.getElementById('lecture-panel').classList.add('toggle-assigment');
+})
+
 document.getElementById('back-assigment-mange').addEventListener('click',(e)=>{
     e.preventDefault();
     document.getElementById('assigment-panel').classList.remove('toggle-assigment');
 })
 
+document.getElementById('back-lecture-mange').addEventListener('click',(e)=>{
+    e.preventDefault();
+    document.getElementById('lecture-panel').classList.remove('toggle-assigment');
+})
+
 document.getElementById('back-student-detail').addEventListener('click',(e)=>{
     e.preventDefault();
     document.getElementById('stu-detail-panel').classList.remove('toggle-stu-panel');
+})
+
+document.getElementById('close-btn-lec-asigm').addEventListener('click',()=>{
+    document.getElementById('assign-lectur-form').classList.remove('show-assign-lecture-form');
 })

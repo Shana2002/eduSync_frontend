@@ -1,6 +1,8 @@
 const batchSelect = document.getElementById('batch');
 const moduleSelect = document.getElementById('module');
 const sessionNumberInput = document.getElementById('session-number');
+const lectureName = document.getElementById('lecture-name');
+const moduleAssign = document.getElementById('module-assign-id');
 const lectureHallSelect = document.getElementById('lecture-hall');
 
 async function loadBatches() {
@@ -50,7 +52,8 @@ moduleSelect.addEventListener("change", async function() {
         const response = await fetch(`http://localhost:8000/v1/session/gen?module=${moduleSelect.value}&batch=${batchSelect.value}`);
         const data = await response.json();
         sessionNumberInput.value = data.session;
-
+        lectureName.value = data.lecture || '';
+        moduleAssign.value = data.module_assign || '';
     } catch (error) {
         console.error("Error fetching lecture halls:", error);
     }
@@ -78,3 +81,62 @@ async function LoadHalls(){
 
 LoadHalls();
 loadBatches();
+
+document.getElementById('add-shedule-form').addEventListener('submit', async (e) => {
+    e.preventDefault(); // Prevent default form submission
+
+    // Get form values
+    const batch_id = document.getElementById('batch').value;
+    const moduleid = document.getElementById('module').value;
+    const sessionName = document.getElementById('session-number').value;
+    const hall_id = document.getElementById('lecture-hall').value;
+    const lectureName = document.getElementById('lecture-name').value;
+    const module_assign_id = document.getElementById('module-assign-id').value;
+    const shedule_data = document.getElementById('date-shedule').value;
+    const start_time = document.getElementById('start-time-shedule').value;
+    const end_time = document.getElementById('end-time-shedule').value;
+
+    if(!module_assign_id || !lectureName){
+        alert('Module not Assigend for lecture, Assign Lecture and Try again');
+        return;
+    }
+    // Validate required fields
+    if (!module_assign_id || !batch_id || !batch_id || !hall_id || !lectureName || !shedule_data || !start_time || !end_time) {
+        alert('All fields are required');
+        return;
+    }
+
+    try {
+        // Send POST request to schedule a class
+        const response = await fetch('http://localhost:8000/v1/session/create', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials:'include',
+            body: JSON.stringify({
+                batch_id,
+                moduleid,
+                module_assign_id,
+                hall_id,
+                shedule_data,
+                start_time,
+                end_time
+            })
+        });
+        alert('hello');
+        const data = await response.json();
+
+        if (response.ok) {
+            alert('Class scheduled successfully');
+            document.getElementById('add-shedule-form').reset(); // Reset form
+        } else {
+            alert(data.message || 'Failed to schedule class');
+        }
+
+    } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred. Please try again.');
+    }
+});
+
