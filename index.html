@@ -4,8 +4,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
+    <link rel="stylesheet" href="logingcss.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"
+    />
+    <script
+      src="https://kit.fontawesome.com/e82ac91667.js"
+      crossorigin="anonymous"
+    ></script>
+</head>
 </head>
 <body>
     <!-- Design login page here -->
+    <!--<body>
+        <div class="main">
+           <div class="leftsiteimage">
+               <img src="assets\leftimage.png" />
+            </div>
+    
+            <div class="logingform">
+                <div class="logo1">
+                    <img src="assets\logo1.png" />
+    
+                </div>
+    
+                <div class="Welcome">
+                <h1> Hello Admin </h1>
+                <h2> Please log in to your account</h2>
+                 <div class="">
+                <form id="login" class="login_detatils">
+                    <input type="text"class="input-field"placeholder="User ID"required/>
+                    <input type="password"class="input-field"placeholder="Enter Password"required/>
+                    <input type="checkbox"><label for="">Remember Me</label> <a class="para1">                  Forget Your Password</a>
+                    <button type="submit" class="submit-btn">login</button><br><br>
+                    <P>Already have an account? <button class="submit-btn1">Sign Up Here</button></P>
+                </form>
+                  
+                </div>
+               </div>
+            </div>-->
+    
+            <div class="signform">
+                <div class="signlogo1">
+                    <img src="assets/backimage1.jpg" />
+    
+                </div>
+                <div class="signform">
+                <div class="signWelcome">
+                <h1> Hello There, Welcome</h1>
+                <h2> Please fill out the Fields to  Create Your account</h2>
+                 <div class="">
+                <form id="sign" class="sign_detatils">
+                    <input type="text"class="input-field1"placeholder="Name"required/>
+                    <input type="text"class="input-field1"placeholder="User Name"required/>
+                    <input type="email"class="input-field1"placeholder="Email"required/>
+                    <input type="password"class="input-field1"placeholder="Enter Password"required/>
+                    
+                    <button type="submit" class="submit-btn">Sign Up</button>
+    
+                   
+                </form>
+                <P>Already have an account? <button>Loging Here</button></P>
+                </div>
+               </div>
+              </div>
+            </div>
+           <div class="log-background" id="log-background">
+                <a onclick ="closeform()" class ="close-btn" ><i class="fa-solid fa-xmark"></i></a>
+              <div class="loginform" id="logingform">
+                <div class="buttonbox">
+                  <div id="btn"></div>
+                  <button type="button" class="togglebtn" onclick="login()">
+                    LoginIn
+                  </button>
+                  <button type="button" class="togglebtn" onclick="register()">
+                    Register
+                  </button>
+                </div> 
+        
+            
+         </div>
 </body>
 </html>
