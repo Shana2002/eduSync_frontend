@@ -62,15 +62,48 @@
           <div class="horiscroll-container-1"></div>
           <h2>Day to Day Orverview</h2>
           <div class="flex-col">
-            <div class="chart-container"></div>
+            <div class="chart-container">
+              <canvas id="studentChart"></canvas>
+            </div>
             <div class="other-container">
               <div class="hor-container1">
-                <div class="stattus-card"></div>
-                <div class="stattus-card"></div>
-                <div class="stattus-card"></div>
+                <div class="stattus-card">
+                  <h2>100K</h2>
+                  <p>New Student</p>
+                </div>
+                <div class="stattus-card">
+                  <h2>50</h2>
+                  <p>New Lectures</p>
+                </div>
+                <div class="stattus-card">
+                  <h2>25</h2>
+                  <p>Ongoing Batches</p>
+                </div>
               </div>
-              <div class="status-lcard"></div>
-              <div class="status-lcard"></div>
+              <div class="status-lcard">
+                <div class="lcard-container">
+                  <div class="lcard-icon">
+                    <img src="../assets/image 13.png" alt="">
+                  </div>
+                  <div class="lcard-content">
+                    <p>Computing and Software Engineering - Batch 116</p>
+                    <p>New session scheduled at</p>
+                    <h1>10.00 A.M.</h1>
+                  </div>
+                </div>
+              </div>
+              <div class="status-lcard">
+                <div class="lcard-container">
+                  <div class="lcard-icon">
+                    <img src="../assets/image 14.png" alt="">
+                  </div>
+                  <div class="lcard-content">
+                    <p>Computing and Software Engineering - Batch 116</p>
+                    <p>New session scheduled at</p>
+                    <h1>10.00 A.M.</h1>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -489,7 +522,7 @@
               <div class="legend">
                 <span><div style="background: #0D0B69;"></div> Attendants</span>
               </div>
-              <canvas id="summaryChart"></canvas>
+              <canvas id="summaryChart" class="summaryChart"></canvas>
             </div>
           </div>
           <div class="stu-static-panel" id="stu-static-panel">

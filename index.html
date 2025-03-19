@@ -18,7 +18,7 @@
 <body>
     <!-- Design login page here -->
     <!--<body>
-        <div class="main">
+        <div class="main"> -->
            <div class="leftsiteimage">
                <img src="assets\leftimage.png" />
             </div>
@@ -33,19 +33,18 @@
                 <h1> Hello Admin </h1>
                 <h2> Please log in to your account</h2>
                  <div class="">
-                <form id="login" class="login_detatils">
-                    <input type="text"class="input-field"placeholder="User ID"required/>
-                    <input type="password"class="input-field"placeholder="Enter Password"required/>
+                <form id="login_form" class="login_detatils">
+                    <input type="text" id="username" class="input-field"placeholder="User ID"required/>
+                    <input type="password" id="password" class="input-field"placeholder="Enter Password"required/>
                     <input type="checkbox"><label for="">Remember Me</label> <a class="para1">                  Forget Your Password</a>
-                    <button type="submit" class="submit-btn">login</button><br><br>
-                    <P>Already have an account? <button class="submit-btn1">Sign Up Here</button></P>
+                    <input type="submit" class="submit-btn">login</button><br><br>
                 </form>
                   
                 </div>
                </div>
-            </div>-->
+            </div>
     
-            <div class="signform">
+            <!-- <div class="signform">
                 <div class="signlogo1">
                     <img src="assets/backimage1.jpg" />
     
@@ -81,9 +80,10 @@
                   <button type="button" class="togglebtn" onclick="register()">
                     Register
                   </button>
-                </div> 
+                </div> -->
         
             
          </div>
+         <script src="./js/login.js"></script>
 </body>
 </html>
