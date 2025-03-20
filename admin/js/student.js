@@ -64,7 +64,7 @@ function renderStudents(show_student) {
         studentCard.classList.add('student-card-long');
 
         studentCard.innerHTML = `
-            <div class="stu-img-s"></div>
+            <img class="stu-img-s" src="../assets/Customer.png" alt="">
             <div class="stu-details">
                 <h3>${student.first_name} ${student.last_name} / ID: ${student.username} / NIC: ${student.mobile}</h3>
                 <p>Batch ${student.batch_id} - ${student.title}</p>

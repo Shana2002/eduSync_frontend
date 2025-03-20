@@ -72,8 +72,9 @@
     width: 5vh;
     height: 5vh;
     border-radius: 50%;
-    background-color: red;
+    background-color: rgb(77, 77, 77);
     flex-shrink: 0; /* Prevents image from shrinking */
+    object-fit: contain;
 }
 
 
