@@ -13,7 +13,7 @@ export const LoadStudentModuleDetails = async (student_id) => {
     try {
         const response = await fetch(`http://localhost:8000/v1/student/${student_id}/modules`);  // API endpoint
         const data = await response.json();
-        
+        console.log(data)
         data.forEach((dataModule, index) => {
             let innerData = `
                 <div class="module-header" id="module-${index + 1}-header">
@@ -53,12 +53,12 @@ export const LoadStudentModuleDetails = async (student_id) => {
             staticsPanel.innerHTML += innerData;
 
             // Add event listener to toggle visibility of module content
-            const moduleHeader = document.getElementById(`module-${index + 1}-header`);
-            const moduleContent = document.getElementById(`module-${index + 1}-content`);
+            // const moduleHeader = document.getElementById(`module-${index + 1}-header`);
+            // const moduleContent = document.getElementById(`module-${index + 1}-content`);
             
-            moduleHeader.addEventListener("click", function() {
-                moduleContent.style.display = moduleContent.style.display === "block" ? "none" : "block";
-            });
+            // moduleHeader.addEventListener("click", function() {
+            //     moduleContent.style.display = moduleContent.style.display === "block" ? "none" : "block";
+            // });
         });
         document.querySelectorAll(".module-header").forEach(header => {
             header.addEventListener("click", function() {
@@ -79,7 +79,7 @@ export const LoadStudentDetails = async (student_id) => {
         // Populate student details in the DOM
         document.querySelector(".div3 h1").textContent = student[0].first_name+ ' ' + student[0].last_name;
         document.querySelector(".div4 h5").textContent = student[0].program;
-
+        document.getElementById('single-stu-img').src = `http://localhost:8000/public${student[0].image_url}`
         console.log(student)
         const detailsDiv = document.querySelector(".div6");
         detailsDiv.innerHTML = `

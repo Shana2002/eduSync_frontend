@@ -62,3 +62,6 @@ document.getElementById('back-student-detail').addEventListener('click',(e)=>{
 document.getElementById('close-btn-lec-asigm').addEventListener('click',()=>{
     document.getElementById('assign-lectur-form').classList.remove('show-assign-lecture-form');
 })
+document.getElementById('close-btn-lec-asigm1').addEventListener('click',()=>{
+    document.getElementById('assign-submission-form').classList.remove('show-assign-lecture-form');
+})

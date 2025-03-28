@@ -64,7 +64,7 @@ function renderStudents(show_student) {
         studentCard.classList.add('student-card-long');
 
         studentCard.innerHTML = `
-            <img class="stu-img-s" src="../assets/Customer.png" alt="">
+            <img class="stu-img-s" src="http://localhost:8000/public${student.image_url}" alt="">
             <div class="stu-details">
                 <h3>${student.first_name} ${student.last_name} / ID: ${student.username} / NIC: ${student.mobile}</h3>
                 <p>Batch ${student.batch_id} - ${student.title}</p>
@@ -159,31 +159,42 @@ document.getElementById("add-student-form").addEventListener("submit", async (e)
     const last_name = document.getElementById("student-lastname").value.trim();
     const mobile = document.getElementById("student-mobile").value.trim();
     const batch = document.getElementById("student-batch").value;
+    const studentPhoto = document.getElementById("student-photo").files[0];
 
     // Validation
-    if (!email || !first_name || !last_name || !mobile || !batch) {
-        alert("Please fill in all fields");
+    if (!email || !first_name || !last_name || !mobile || !batch || !studentPhoto) {
+        alert("Please fill in all fields and upload a photo.");
         return;
     }
 
-    // Create request payload
-    const studentData = { email, first_name, last_name, mobile, batch };
+    // Create FormData to handle file upload
+    const formData = new FormData();
+    formData.append("email", email);
+    formData.append("first_name", first_name);
+    formData.append("last_name", last_name);
+    formData.append("mobile", mobile);
+    formData.append("batch", batch);
+    formData.append("studentImage", studentPhoto); // Append the file
 
     try {
         const response = await fetch("http://localhost:8000/v1/student/add", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(studentData),
+            body: formData, // Send the form data (with file)
         });
 
         if (!response.ok) throw new Error("Failed to add student");
 
         alert("Student added successfully!");
-        loadStudents();
-        // Clear the form after successful submission
-        document.getElementById("add-student-form").reset();
+        loadStudents(); // Refresh the student list
+        document.getElementById("add-student-form").reset(); // Clear the form after successful submission
     } catch (error) {
         console.error("Error adding student:", error);
         alert("Error adding student. Please try again.");
     }
+});
+
+
+document.getElementById('student-photo').addEventListener('change', function(event) {
+    const fileName = event.target.files[0] ? event.target.files[0].name : 'No file chosen';
+    document.getElementById('file-name').textContent = fileName;
 });

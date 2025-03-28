@@ -1,10 +1,16 @@
 const batchPanel = document.getElementById("batch-container");
 const batchDetailsPanel = document.getElementById("batch-details-panel");
+document.addEventListener("DOMContentLoaded", async () => {
+  console.log("DOMContentLoaded triggered");
+  await loadBatches();
+  await loadPrograms();
+  await LoadLectures();
+});
 
-async function loadBatches() {
+export async function loadBatches() {
   // Clear existing child elements
   batchPanel.innerHTML = "";
-
+  console.log('hello')
   try {
     // Fetch batch data from an API
     const response = await fetch("http://localhost:8000/v1/batch");
@@ -13,7 +19,7 @@ async function loadBatches() {
     }
 
     const batches = await response.json(); // Convert response to JSON
-
+    console.log(batches)
     // Loop through the fetched data
     batches.forEach((batch) => {
       const batchCard = document.createElement("div");
@@ -40,20 +46,15 @@ async function loadBatches() {
   }
 }
 
-// Call function with the required number of batches
-loadBatches();
-
-function showBatchDetailsPanel(batch_id) {
+export function showBatchDetailsPanel(batch_id) {
   //alert(`Batch ID: ${batch_id}`);
   loadBatchDetails(batch_id);
   batchDetailsPanel.classList.add("toglle-batch");
+  document.getElementById('btch-assig-mng').innerHTML = `Assigment Manage Batch ${batch_id}`
 }
-document.addEventListener("DOMContentLoaded", async () => {
-  await loadPrograms(); // Load programs into dropdown when page loads
-});
 
 // Fetch available programs and populate dropdown
-async function loadPrograms() {
+export async function loadPrograms() {
   try {
     const response = await fetch("http://localhost:8000/v1/program");
     if (!response.ok) throw new Error("Failed to fetch programs");
@@ -102,17 +103,18 @@ document
       });
 
       if (!response.ok) throw new Error("Failed to create batch");
-
+      
       alert("Batch created successfully!");
+      await loadBatches();
       document.getElementById("add-batch-form").reset();
-      loadBatches();
+      
     } catch (error) {
       console.error("Error creating batch:", error);
       alert("Error creating batch. Please try again.");
     }
   });
 
-async function loadBatchDetails(batch_id) {
+export async function loadBatchDetails(batch_id) {
   document.getElementById("batch-panel-id").innerHTML = `Batch ${batch_id}`;
   try {
     // Fetch batch data from an API
@@ -135,7 +137,7 @@ async function loadBatchDetails(batch_id) {
   await LoadBatchLectures(batch_id);
 }
 
-async function LoadStudentsBatchPanel(batch_id) {
+export async function LoadStudentsBatchPanel(batch_id) {
   const batchStudentPanel = document.getElementById("batch-student-container");
   batchStudentPanel.innerHTML = "";
   try {
@@ -175,11 +177,17 @@ async function LoadStudentsBatchPanel(batch_id) {
   }
 }
 
-async function LoadBatchAssigment(batch_id) {
+export async function LoadBatchAssigment(batch_id) {
   const batchStudentPanel = document.getElementById(
     "assigment-table-container"
   );
-  batchStudentPanel.innerHTML = "";
+
+  if (!batchStudentPanel) {
+    console.error("Element #assigment-table-container not found.");
+    return;
+  }
+
+  batchStudentPanel.innerHTML = ""; // Clear previous content
 
   try {
     // Fetch batch assignment data from the API
@@ -200,61 +208,86 @@ async function LoadBatchAssigment(batch_id) {
 
     // Create a table dynamically
     let tableHTML = `
-            <div class="assigment-table-container">
-                <div class="assigment-table">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Module Name</th>
-                                <th>Type</th>
-                                <th>Handout Date</th>
-                                <th>Submission Date</th>
-                                <th>Assignment Submission</th>
-                                <th>Manage Contents</th>
-                            </tr>
-                        </thead>
-                        <tbody>`;
+            <div class="assigment-table">
+                <table>
+                    <thead id="table-batch-id"  data-id="${batch_id}">
+                        <tr>
+                            <th>Module Name</th>
+                            <th>Type</th>
+                            <th>Handout Date</th>
+                            <th>Submission Date</th>
+                            <th>Assignment Submission</th>
+                            <th>Manage Contents</th>
+                        </tr>
+                    </thead>
+                    <tbody id="assigment-table-body">`;
 
     assignments.forEach((assignment) => {
       tableHTML += `
-                <tr>
+                <tr data-id="${assignment.moduleid}">
                     <td>${assignment.title}</td>
                     <td>${assignment.assigment_type}</td>
                     <td>${assignment.start_date}</td>
                     <td>${assignment.end_date}</td>
-                    <td><button class="upload-btn" onclick="uploadAssignment(${assignment.assigment_id})">Upload Assignment</button></td>
-                    <td><button class="manage-btn" onclick="manageContents(${assignment.assigment_id})">Manage</button></td>
+                    <td><button class="upload-btn">Upload Assignment</button></td>
+                    <td><button class="manage-btn">Manage</button></td>
                 </tr>`;
     });
 
     tableHTML += `
-                        </tbody>
-                    </table>
-                </div>
+                    </tbody>
+                </table>
             </div>`;
 
     batchStudentPanel.innerHTML = tableHTML;
+
+    // Attach event listeners dynamically
+    document.querySelectorAll(".upload-btn").forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+        const assignmentId = event.target.closest("tr").dataset.id;
+        
+        uploadAssignment(assignmentId);
+      });
+    });
+
+    document.querySelectorAll(".manage-btn").forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+        const assignmentId = event.target.closest("tr").dataset.id;
+        const batch = document.getElementById('table-batch-id').dataset.id;
+        manageContents(assignmentId,batch);
+      });
+    });
   } catch (error) {
     console.error("Error loading assignments:", error);
     batchStudentPanel.innerHTML = `<p style="color: red;">Failed to load assignments. Please try again.</p>`;
   }
 }
 
-// Example functions for upload and manage buttons
-function uploadAssignment(assignmentId) {
-  alert(`Upload function triggered for assignment ID: ${assignmentId}`);
+// Export functions to be used in ES modules
+export function uploadAssignment(assignmentId) {
+  document
+      .getElementById("assign-submission-form")
+      .classList.add("show-assign-lecture-form");
+    document.getElementById("module-assign-id").value = assignmentId;
 }
 
-function manageContents(assignmentId) {
-  alert(`Manage function triggered for assignment ID: ${assignmentId}`);
+export function manageContents(assignmentId,batch) {
+  alert(`Manage function triggered for assignment ID: ${assignmentId} and ${batch}`);
 }
 
-async function LoadBatchLectures(batch_id) {
+
+export async function LoadBatchLectures(batch_id) {
   const batchStudentPanel = document.getElementById("lecture-table-container");
-  batchStudentPanel.innerHTML = "";
+  document.getElementById('batch-number-lec-mng').innerHTML= `Lecture Manage Batch ${batch_id}`
+  if (!batchStudentPanel) {
+    console.error("Error: Element #lecture-table-container not found.");
+    return;
+  }
+
+  batchStudentPanel.innerHTML = ""; // Clear previous content
 
   try {
-    // Fetch batch assignment data from the API
+    // Fetch batch lectures data from the API
     const response = await fetch(
       `http://localhost:8000/v1/batch/${batch_id}/lectures`
     );
@@ -264,6 +297,7 @@ async function LoadBatchLectures(batch_id) {
     }
 
     const lectures = await response.json();
+
     if (!lectures.length) {
       batchStudentPanel.innerHTML = `<p style="color: gray;">No module available for this batch.</p>`;
       return;
@@ -280,15 +314,15 @@ async function LoadBatchLectures(batch_id) {
                                 <th>Lecture</th>
                             </tr>
                         </thead>
-                        <tbody>`;
+                        <tbody id="lecture-table-body">`;
 
     lectures.forEach((lectured) => {
       tableHTML += `
-                <tr>
+                <tr data-module-id="${lectured.module.module_id}" data-batch-id="${batch_id}">
                     <td>${lectured.module.title}</td>
                     ${
                       lectured.lecture === null
-                        ? `<td><button class="upload-btn" onclick="updateAssignLecture(${lectured.module.module_id},${batch_id})">Assign Lecture</button></td>`
+                        ? `<td><button class="assign-lecture-btn">Assign Lecture</button></td>`
                         : `<td>${lectured.lecture[0].first_name} ${lectured.lecture[0].last_name}</td>`
                     }
                 </tr>`;
@@ -301,44 +335,71 @@ async function LoadBatchLectures(batch_id) {
             </div>`;
 
     batchStudentPanel.innerHTML = tableHTML;
+
+    // Attach event listeners to dynamically created buttons
+    document.querySelectorAll(".assign-lecture-btn").forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+        const row = event.target.closest("tr");
+        const module_id = row.dataset.moduleId;
+        const batch_id = row.dataset.batchId;
+        updateAssignLecture(module_id, batch_id);
+      });
+    });
   } catch (error) {
-    console.error("Error loading assignments:", error);
-    batchStudentPanel.innerHTML = `<p style="color: red;">Failed to load assignments. Please try again.</p>`;
+    console.error("Error loading lectures:", error);
+    batchStudentPanel.innerHTML = `<p style="color: red;">Failed to load lectures. Please try again.</p>`;
   }
 }
 
-async function LoadLectures(){
-    const lectureSelect = document.getElementById('lecture-select-ass-batch')
-    try {
-        const response = await fetch(`http://localhost:8000/v1/lecture/`,{
-            method: 'GET',
-            headers: { 'Content-Type': 'application/json' },
-            credentials: 'include',
-        });
-        const halls = await response.json();
-        lectureSelect.innerHTML = '<option selected disabled>Select Lecture Hall</option>';
-        console.log(halls)
-        halls.forEach(hall => {
-            let option = document.createElement("option");
-            option.value = hall.lecture_id;
-            option.textContent = hall.first_name + ' ' + hall.last_name;
-            lectureSelect.appendChild(option);
-        });
+export async function LoadLectures() {
+  const lectureSelect = document.getElementById("lecture-select-ass-batch");
 
-        lectureSelect.disabled = false;
-    } catch (error) {
-        console.error("Error fetching lecture halls:", error);
-        lectureHallSelect.innerHTML = '<option selected disabled>Error loading halls</option>';
+  if (!lectureSelect) {
+    console.error("Error: Element #lecture-select-ass-batch not found.");
+    return;
+  }
+
+  try {
+    const response = await fetch("http://localhost:8000/v1/lecture/", {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch lectures");
     }
-} 
-LoadLectures();
-function updateAssignLecture(module_id,batch_id){
-    document.getElementById('assign-lectur-form').classList.add('show-assign-lecture-form');
-    document.getElementById('ass-lec-batch').innerHTML = `Batch ${batch_id}`;
-    document.getElementById('ass-lec-module').innerHTML = `Module ${module_id}`;
-    
-    document.getElementById('batch-id').value = batch_id;
-    document.getElementById('module-id').value = module_id;
+
+    const halls = await response.json();
+    lectureSelect.innerHTML =
+      '<option selected disabled>Select Lecture Hall</option>';
+
+    halls.forEach((hall) => {
+      let option = document.createElement("option");
+      option.value = hall.lecture_id;
+      option.textContent = hall.first_name + " " + hall.last_name;
+      lectureSelect.appendChild(option);
+    });
+
+    lectureSelect.disabled = false;
+  } catch (error) {
+    console.error("Error fetching lecture halls:", error);
+    lectureSelect.innerHTML =
+      '<option selected disabled>Error loading halls</option>';
+  }
+}
+
+// Automatically load lectures when the page is loaded
+
+export function updateAssignLecture(module_id, batch_id) {
+  document
+    .getElementById("assign-lectur-form")
+    .classList.add("show-assign-lecture-form");
+  document.getElementById("ass-lec-batch").textContent = `Batch ${batch_id}`;
+  document.getElementById("ass-lec-module").textContent = `Module ${module_id}`;
+
+  document.getElementById("batch-id").value = batch_id;
+  document.getElementById("module-id").value = module_id;
 }
 
 document.getElementById('assign-lecture').addEventListener('submit', async (e) => {
@@ -372,6 +433,7 @@ document.getElementById('assign-lecture').addEventListener('submit', async (e) =
             alert('Lecture assigned successfully');
             document.getElementById('assign-lecture').reset(); // Reset form
             LoadBatchLectures(batch);
+            LoadBatchAssigment(batch);
             document.getElementById('assign-lectur-form').classList.remove('show-assign-lecture-form');
         } else {
             alert(data.message || 'Failed to assign lecture');
@@ -384,4 +446,36 @@ document.getElementById('assign-lecture').addEventListener('submit', async (e) =
 });
 
 
+document.getElementById('assign-submission').addEventListener('submit', async function(event) {
+  event.preventDefault(); // Prevent form submission
+  const batch = document.getElementById('table-batch-id').dataset.id;
+  const formData = new FormData();
+  formData.append('module_assign_id', document.getElementById('module-assign-id').value);
+  formData.append('start_date', document.getElementById('start_date').value);
+  formData.append('deadline', document.getElementById('deadline').value);
+  formData.append('assigment_type', document.getElementById('submission-type').value);
+  formData.append('marks', 100); // Example marks, you can change this
+  formData.append('module-submission-file', document.getElementById('module-submission-file').files[0]);
+
+  try {
+      // Send POST request to create assignment
+      const response = await fetch('http://localhost:8000/v1/assigment/create', {
+          method: 'POST',
+          body: formData,
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+          alert(data.message || "Assignment created successfully");
+          document.getElementById('assign-submission-form').classList.remove('show-assign-lecture-form');
+          LoadBatchAssigment(batch); // Assuming `batch` is defined elsewhere
+      } else {
+          alert(data.message || 'Failed to create assignment');
+      }
+  } catch (error) {
+      console.error('Error:', error);
+      alert('An error occurred. Please try again.');
+  }
+});
 
